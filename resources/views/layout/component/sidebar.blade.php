@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/certificate')}}">
         <div class="sidebar-brand-icon">
-            <img class="w-75 h-75" src="img/logo_panjang.png" >
+            <img class="w-75 h-75" src="{{url('img/logo_panjang.png')}}" >
         </div>
     </a>
 

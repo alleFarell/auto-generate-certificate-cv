@@ -7,6 +7,7 @@
         <h6 class="m-0 font-weight-bold text-dark">Your Activity</h6>
     </div>
     <div class="card-body">
+        <a class="btn btn-success mb-3" href="{{ url('/certificate/add-cert') }}">Input Data</a>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -18,38 +19,42 @@
                         <th class="text-center">Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th class="text-center">Tipe Event</th>
-                        <th class="text-center">Nama Event</th>
-                        <th class="text-center">Tanggal</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </tfoot>
                 <tbody>
-                    <tr>
-                        <td>Seminar</td>
-                        <td>Changing The Way You Think to Fulfil Your Potential</td>
-                        <td>27 Juli 2020</td>
-                        <td class="text-center"><a class="badge badge-success badge-sm p-1">
-                            <i class="fas fa-check"></i>
-                        </a></td>
-                        <td class="text-center"><a class="text-danger" href="">
-                            <i class="far fa-file-pdf fa-lg"></i>
-                        </a></td>
-                    </tr>             
-                    <tr>
-                        <td>Workshop</td>
-                        <td>Judul Workshopnya</td>
-                        <td>12 Desember 2020</td>
-                        <td class="text-center"><a class="badge badge-success badge-sm p-1">
-                            <i class="fas fa-check"></i>
-                        </a></td>
-                        <td class="text-center"><a class="text-danger" href="">
-                            <i class="far fa-file-pdf fa-lg"></i>
-                        </a></td>
-                    </tr>             
+                    @foreach($data as $key=>$value)
+                        <tr>
+                            <td>{{ $value->tipe }}</td>
+                            <td>{{ $value->event }}</td>
+                            @if($value->tanggal_mulai != $value->tanggal_selesai)
+                                <td>{{ $value->tanggal_mulai }} - {{ $value->tanggal_selesai }}</td>
+                            @else
+                                <td>{{ $value->tanggal_mulai }}</td>
+                            @endif
+
+                            @if (($value->status == "Hadir") && ($value->tanggal_selesai < now()))
+                                <td class="text-center"><a class="badge badge-success p-1">
+                                    <i class="fas fa-check"></i><span> Selesai</span>
+                                    </a></td>
+                                <td class="text-center"><a class="text-danger" href="">
+                                    <i class="far fa-file-pdf fa-lg "></i>
+                                </a></td>
+                            @elseif (($value->status == "Tidak Hadir") && ($value->tanggal_selesai < now()))
+                                <td class="text-center"><a class="badge badge-danger p-1">
+                                    <i class="fas fa-times"></i><span> Batal</span>
+                                </a></td>
+                                <td class="text-center"><a class="text-dark" >
+                                    <i class="far fa-file-pdf fa-lg "></i>
+                                </a></td>
+                            @else 
+                                <td class="text-center"><a class="badge badge-warning  p-1">
+                                    <i class="fa fa-history"></i><span> Proses</span>
+                                </a></td>
+                                <td class="text-center"><a class="text-dark" >
+                                    <i class="far fa-file-pdf fa-lg "></i>
+                                </a></td>
+                            @endif
+                            
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -57,11 +62,3 @@
 </div>
 @endsection
 
-@push('scripts')
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-@endpush
