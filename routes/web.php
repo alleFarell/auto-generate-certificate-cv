@@ -22,13 +22,11 @@ Route::get('/', function () {
 Route::get('/certificate', [CertificateController::class, 'index']);
 Route::get('/certificate/add-cert', [CertificateController::class, 'create']);
 Route::post('/certificate', [CertificateController::class, 'store']);
-Route::get('/certificate/{id}', [CertificateController::class, 'show']);
+Route::get('/certificate/pdf/{id}', [CertificateController::class, 'pdf']);
 
 // cv
 Route::get('/cv', [CVController::class, 'index']);
+Route::post('/cv/pendidikan', [CVController::class, 'pendidikan']);
 
-// Route::get('/download_cv', function () {
-//     return view('cv_layout');
-// });
 
 

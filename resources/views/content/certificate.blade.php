@@ -22,8 +22,8 @@
                 <tbody>
                     @foreach($data as $key=>$value)
                         <tr>
-                            <td>{{ $value->tipe }}</td>
-                            <td>{{ $value->event }}</td>
+                            <td>{{ucwords($value->tipe)}}</td>
+                            <td>{{ucwords($value->event)}}</td>
                             @if($value->tanggal_mulai != $value->tanggal_selesai)
                                 <td>{{ $value->tanggal_mulai }} - {{ $value->tanggal_selesai }}</td>
                             @else
@@ -34,7 +34,7 @@
                                 <td class="text-center"><a class="badge badge-success p-1">
                                     <i class="fas fa-check"></i><span> Selesai</span>
                                     </a></td>
-                                <td class="text-center"><a class="text-danger" href="">
+                                <td class="text-center"><a class="text-danger" href="{{ url('/certificate/pdf').'/'.$value->id }}" target="_blank">
                                     <i class="far fa-file-pdf fa-lg "></i>
                                 </a></td>
                             @elseif (($value->status == "Tidak Hadir") && ($value->tanggal_selesai < now()))
@@ -52,7 +52,6 @@
                                     <i class="far fa-file-pdf fa-lg "></i>
                                 </a></td>
                             @endif
-                            
                         </tr>
                     @endforeach
                 </tbody>

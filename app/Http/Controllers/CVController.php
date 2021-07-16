@@ -81,4 +81,15 @@ class CVController extends Controller
     {
         //
     }
+
+    /**
+     * Store a newly created pendidikan in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function pendidikan(Request $request)
+    {
+        return $request;
+    }
 }

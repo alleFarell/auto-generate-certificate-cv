@@ -6,12 +6,12 @@
     <div class="collapse show" id="pendidikan">
         <div class="card-body">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pendidikan_modal">
                 + Tambah Pendidikan
             </button>
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            <div class="modal fade" id="pendidikan_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog ">
                     <div class="modal-content">
@@ -22,7 +22,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form class="w-100 " method="POST" action="{{ url('/certificate') }}">
+                            <form class="w-100 " method="POST" action="{{ url('/cv/pendidikan') }}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="universitas">Universitas/Sekolah</label>
