@@ -23,6 +23,7 @@ Route::get('/certificate', [CertificateController::class, 'index']);
 Route::get('/certificate/add-cert', [CertificateController::class, 'create']);
 Route::post('/certificate', [CertificateController::class, 'store']);
 Route::get('/certificate/pdf/{id}', [CertificateController::class, 'pdf']);
+Route::get('/certificate/pdf2/{id}', [CertificateController::class, 'pdf2']);
 
 // cv
 Route::get('/cv', [CVController::class, 'index']);

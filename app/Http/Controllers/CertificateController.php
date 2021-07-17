@@ -92,6 +92,41 @@ class CertificateController extends Controller
 
         // return view('content.certificate_pdf', compact('data','tgl_indo'));
     }
+    public function pdf2($id)
+    {
+        $bulan = array(
+            1 =>   'Januari',
+            'Februari',
+            'Maret',
+            'April',
+            'Mei',
+            'Juni',
+            'Juli',
+            'Agustus',
+            'September',
+            'Oktober',
+            'November',
+            'Desember'
+        );
+
+        $data = Certificate::where('id',$id)->get();
+        $tgl = ($data[0]['tanggal_selesai']);
+        $komponen = explode("-",$tgl);
+        $tgl_indo = $komponen[2].' '.$bulan[(int) $komponen[1]].' '.$komponen[0];
+        
+
+
+        // html2pdf
+        $html2pdf = new Html2Pdf('L','A4','en',false,'UTF-8', array(0,0,0,0));
+        $doc = view('content.certificate_pdf_2', compact('data', 'tgl_indo'));
+        $html2pdf->pdf->SetTitle('Certificate_'.$data[0]['nama']);
+        $html2pdf->setTestIsImage(false);
+        $html2pdf->writeHTML($doc, false);
+        $html2pdf->Output($data[0]['nama'].".pdf",'I');
+        // end of hrml2pdf
+
+        // return view('content.certificate_pdf_2', compact('data','tgl_indo'));
+    }
 
     
     

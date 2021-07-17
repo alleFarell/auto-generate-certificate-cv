@@ -17,6 +17,7 @@
                         <th class="text-center">Tanggal</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
+                        <th class="text-center">Alternative Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,11 @@
                                 <td class="text-center"><a class="text-danger" href="{{ url('/certificate/pdf').'/'.$value->id }}" target="_blank">
                                     <i class="far fa-file-pdf fa-lg "></i>
                                 </a></td>
+                                <!-- Alternative Design Certificate -->
+                                <td class="text-center"><a class="text-danger" href="{{ url('/certificate/pdf2').'/'.$value->id }}" target="_blank">
+                                    <i class="far fa-file-pdf fa-lg "></i>
+                                </a></td>
+                                <!-- End of Alternative Design Certificate -->
                             @elseif (($value->status == "Tidak Hadir") && ($value->tanggal_selesai < now()))
                                 <td class="text-center"><a class="badge badge-danger p-1">
                                     <i class="fas fa-times"></i><span> Batal</span>
@@ -44,6 +50,11 @@
                                 <td class="text-center"><a class="text-dark" >
                                     <i class="far fa-file-pdf fa-lg "></i>
                                 </a></td>
+                                 <!-- Alternative Design Certificate -->
+                                <td class="text-center"><a class="text-dark" >
+                                    <i class="far fa-file-pdf fa-lg "></i>
+                                </a></td>
+                                <!-- End of Alternative Design Certificate -->
                             @else 
                                 <td class="text-center"><a class="badge badge-warning  p-1">
                                     <i class="fa fa-history"></i><span> Proses</span>
@@ -51,6 +62,11 @@
                                 <td class="text-center"><a class="text-dark" >
                                     <i class="far fa-file-pdf fa-lg "></i>
                                 </a></td>
+                                <!-- Alternative Design Certificate -->
+                                <td class="text-center"><a class="text-dark" >
+                                    <i class="far fa-file-pdf fa-lg "></i>
+                                </a></td>
+                                 <!-- End of Alternative Design Certificate -->
                             @endif
                         </tr>
                     @endforeach
