@@ -4,7 +4,7 @@
 <!-- DataTales Example -->
 <div class="container">
     <div class="d-flex justify-content-end mb-3">
-        <a class="btn btn-success" href="{{ url('/download_cv') }}">Download CV</a>
+        <a class="btn btn-success" href="{{ url('/cv/download_cv') }}">Download CV</a>
     </div>
 </div>
 @include('content.component_cv.datadiri')

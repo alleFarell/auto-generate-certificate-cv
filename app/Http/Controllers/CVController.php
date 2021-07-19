@@ -92,4 +92,9 @@ class CVController extends Controller
     {
         return $request;
     }
+
+    public function pdf()
+    {
+        return view('content.component_cv.cv_pdf');
+    }
 }
