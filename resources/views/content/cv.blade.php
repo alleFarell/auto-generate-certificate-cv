@@ -9,9 +9,9 @@
 </div>
 @include('content.component_cv.datadiri')
 @include('content.component_cv.pendidikan')
-@include('content.component_cv.kerja')
+@include('content.component_cv.seminar_training')
 @include('content.component_cv.proyek')
 @include('content.component_cv.organisasi')
-@include('content.component_cv.publikasi')
+@include('content.component_cv.skill')
 @endsection
 

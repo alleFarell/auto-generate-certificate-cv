@@ -16,7 +16,7 @@
                 <div class="modal-dialog ">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Pendidikan</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -25,8 +25,8 @@
                             <form class="w-100 " method="POST" action="{{ url('/cv/pendidikan') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="universitas">Universitas/Sekolah</label>
-                                    <input type="text" class="form-control" id="nomor" name="universitas" required>
+                                    <label for="universitas">Universitas/Institut/Sekolah</label>
+                                    <input type="text" class="form-control" id="universitas" name="universitas" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="gelar">Gelar</label>
@@ -45,8 +45,8 @@
                                     <input type="month" class="form-control" id="selesai" name="selesai" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="deskripsi">Deskripsi (optional)</label>
-                                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+                                    <label for="ipk">IPK</label>
+                                    <input type="text" class="form-control" id="ipk" name="ipk" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
                             </form>
@@ -54,30 +54,38 @@
                     </div>
                 </div>
             </div>
-
-            <div class="table-responsive mt-3">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Universitas/Sekolah</th>
-                            <th class="text-center">Gelar</th>
-                            <th class="text-center">Jurusan</th>
-                            <th class="text-center">Mulai</th>
-                            <th class="text-center">Selesai</th>
-                            <th class="text-center">Deskripsi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Universitas Telkom</td>
-                            <td>Sarjana</td>
-                            <td>Informatika</td>
-                            <td>Agustus, 2018</td>
-                            <td>Juli, 2022</td>
-                            <td>-</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <hr>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
+                        Agustus, 2018 - Juli, 2022
+                    </div>
+                    <div class="col-sm-8 ml-0 pl-0">
+                        <p class="font-weight-bold mb-0 pb-0">Telkom University - Sarjana / Bachelor</p>
+                        <p class="mb-0 pb-0">Informatika</p>
+                        <p>3.00/4.00</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
+                        Oktober, 2022 - Agustus, 2024
+                    </div>
+                    <div class="col-sm-8 ml-0 pl-0">
+                        <p class="font-weight-bold mb-0 pb-0">Institut Teknologi Bandung - Master / Magister</p>
+                        <p class="mb-0 pb-0">Nama Jurusan</p>
+                        <p>3.00/4.00</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
+                        September, 2024 - November, 2027
+                    </div>
+                    <div class="col-sm-8 ml-0 pl-0">
+                        <p class="font-weight-bold mb-0 pb-0">Institut Teknologi Bandung - Doktor / Doctor</p>
+                        <p class="mb-0 pb-0">Nama Jurusan</p>
+                        <p>3.00/4.00</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

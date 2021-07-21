@@ -18,22 +18,15 @@
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                     </div>
                 </div>
-                <div class="form-group row mb-0">
-                    <label class="col-sm-2 col-form-label">Alamat Domisili</label>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Domisili</label>
                     <div class="col-sm-5">
-                        <label for="provinsi" class="col-form-label">Provinsi</label>
-                        <input type="text" class="form-control" id="provinsi" name="provinsi" placeholder="Provinsi">
+                        <label for="negara" class="col-form-label">Negara</label>
+                        <input type="text" class="form-control" id="negara" name="negara" placeholder="Negara">
                     </div>
                     <div class="col-sm-5">
                         <label for="kota" class="col-form-label">Kota</label>
                         <input type="text" class="form-control" id="kota" name="kota" placeholder="Kota/Kabupaten">
-                    </div>
-                </div>
-                <div class="form-group row mt-0">
-                    <label class="col-sm-2 col-form-label"></label>
-                    <div class="col-sm-10">
-                        <label for="jalan" class="col-form-label">Jalan</label>
-                        <input type="text" class="form-control" id="jalan" name="jalan" placeholder="Jalan">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -54,12 +47,6 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="linkedin" name="linkedin"
                             placeholder="Link LinkedIn">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="github" class="col-sm-2 col-form-label">Github</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="github" name="github" placeholder="Link Github">
                     </div>
                 </div>
                 <div class="form-group row">
