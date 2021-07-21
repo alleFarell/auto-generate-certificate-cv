@@ -41,12 +41,12 @@
 
     #kiri, #kanan {
         text-align: center;
-        width:5%;
+        width:10%;
     }
 
     #tengah {
         text-align: center;
-        width:90%;
+        width:80%;
         padding: 0px;
     }
 
@@ -86,10 +86,11 @@
                 @php
                     $str = $d->nama;
                     $word = explode(" ",$str);
-                    if (count($word) > 5)
+                    if (count($word) > 5){
                         $last_word = str_word_count($str) - 1;
                         $huruf = $word[$last_word][0] . ".";
                         $str = str_replace($word[$last_word], $huruf, $str);
+                    }
                 @endphp
                 <span>{{$str}}</span>
             </td>
