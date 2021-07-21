@@ -115,7 +115,6 @@ class CertificateController extends Controller
         $tgl_indo = $komponen[2].' '.$bulan[(int) $komponen[1]].' '.$komponen[0];
         
 
-
         // html2pdf
         $html2pdf = new Html2Pdf('L','A4','en',false,'UTF-8', array(0,0,0,0));
         $doc = view('content.certificate_pdf_2', compact('data', 'tgl_indo'));
@@ -127,8 +126,4 @@ class CertificateController extends Controller
 
         // return view('content.certificate_pdf_2', compact('data','tgl_indo'));
     }
-
-    
-    
-
 }
