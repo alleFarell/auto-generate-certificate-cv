@@ -90,7 +90,6 @@ class CertificateController extends Controller
         $html2pdf->Output($data[0]['nama'].".pdf",'I');
         // end of hrml2pdf
 
-        // return view('content.certificate_pdf', compact('data','tgl_indo'));
     }
     public function pdf2($id)
     {
@@ -124,6 +123,5 @@ class CertificateController extends Controller
         $html2pdf->Output($data[0]['nama'].".pdf",'I');
         // end of hrml2pdf
 
-        // return view('content.certificate_pdf_2', compact('data','tgl_indo'));
     }
 }
