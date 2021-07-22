@@ -1,7 +1,7 @@
 <div class="card shadow mb-4">
     <a href="#organisasi" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true"
         aria-controls="organisasi">
-        <h6 class="m-0 font-weight-bold text-dark">Pengalaman Organisasi & Kepanitiaan</h6>
+        <h6 class="m-0 font-weight-bold text-dark">Pengalaman Organisasi</h6>
     </a>
     <div class="collapse show" id="organisasi">
         <div class="card-body">
@@ -16,7 +16,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Tambah Organisasi / Kepanitiaan</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Organisasi</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -25,7 +25,7 @@
                             <form class="w-100 " method="POST" action="{{ url('/cv/org') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama_org">Nama Organisasi / Kepanitiaan</label>
+                                    <label for="nama_org">Nama Organisasi</label>
                                     <input type="text" class="form-control" id="nama_org" name="nama_org" required>
                                 </div>
                                 <div class="form-group">
@@ -54,7 +54,7 @@
                         Desember, 2020 - Januari, 2021
                     </div>
                     <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Nama Organisasi / Kepanitiaan</p>
+                        <p class="font-weight-bold mb-0 pb-0">Nama Organisasi</p>
                         <p class="font-italic mb-0 pb-0">Role</p>
                     </div>
                 </div>
