@@ -29,6 +29,8 @@ Route::get('/certificate/pdf2/{id}', [CertificateController::class, 'pdf2']);
 Route::get('/cv', [CVController::class, 'index']);
 Route::post('/cv/pendidikan', [CVController::class, 'pendidikan']);
 Route::get('/cv/download_cv', [CVController::class, 'pdf']);
+Route::get('/cv/download_cv1', [CVController::class, 'pdf1']);
+Route::get('/cv/download_cv2', [CVController::class, 'pdf2']);
 
 
 

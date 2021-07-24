@@ -107,7 +107,7 @@
                 @if (strlen($d->event) <= 55)
 				    <span id="txt_event_shrt">{{ucwords($d->event)}}</span>
                 @else
-                <span id="txt_event_long">{{ucwords($d->event)}}</span>
+                    <span id="txt_event_long">{{ucwords($d->event)}}</span>
                 @endif
             </td>
             <td id="kanan">
