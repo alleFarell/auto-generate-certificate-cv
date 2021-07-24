@@ -15,6 +15,10 @@ class CreateSeminarsTable extends Migration
     {
         Schema::create('seminars', function (Blueprint $table) {
             $table->id();
+            $table->string('event_name');
+            $table->string('organizer');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
