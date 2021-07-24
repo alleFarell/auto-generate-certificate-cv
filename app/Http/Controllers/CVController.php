@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spipu\Html2Pdf\Html2Pdf;
 
 class CVController extends Controller
 {
@@ -95,6 +96,37 @@ class CVController extends Controller
 
     public function pdf()
     {
-        return view('content.component_cv.cv_pdf');
+        $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,10,0,10));
+        $doc = view('content.component_cv.cv_pdf');
+        $html2pdf->pdf->SetTitle('CV_Ghina');
+        $html2pdf->setTestIsImage(false);
+        $html2pdf->writeHTML($doc, false);
+        $html2pdf->Output("CV_Ghina.pdf",'I');
+
+        // return view('content.component_cv.cv_pdf');
+    }
+
+    public function pdf1()
+    {
+        // $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,10,0,10));
+        // $doc = view('content.component_cv.cv_pdf1');
+        // $html2pdf->pdf->SetTitle('CV_Ghina');
+        // $html2pdf->setTestIsImage(false);
+        // $html2pdf->writeHTML($doc, false);
+        // $html2pdf->Output("CV_Ghina.pdf",'I');
+
+        return view('content.component_cv.cv_pdf1');
+    }
+
+    public function pdf2()
+    {
+        $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,5,0,5));
+        $doc = view('content.component_cv.cv_pdf2');
+        $html2pdf->pdf->SetTitle('CV_Ghina');
+        $html2pdf->setTestIsImage(false);
+        $html2pdf->writeHTML($doc, false);
+        $html2pdf->Output("CV_Ghina.pdf",'I');
+
+        // return view('content.component_cv.cv_pdf2');
     }
 }
