@@ -1,0 +1,16 @@
+Problem Bagian CV:
+
+1. Tampilan Datadiri jika sudah ada data dan tidak ada data [Done]
+2. Bagian pendidikan (Tanggal dan ipk jika menggunakan koma)
+3. Bagian seminar (tanggal) [done]
+4. Bagian proyek (tanggal) [done]
+5. organisasi (tanggal) [done]
+6. Tanggal-present [done]
+
+*tanggal untuk display dan store current date (present) belum bisa [done]
+
+Bagian yang belum dikerjakan:
+
+1. Skills (ini nanti setelah meet sama pak indra)
+2. Update data (ini nanti setelah meet sama pak indra)
+3. Delete data (ini nanti setelah meet sama pak indra)

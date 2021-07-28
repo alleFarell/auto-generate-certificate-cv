@@ -26,19 +26,19 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="nama_acara">Nama Acara</label>
-                                    <input type="text" class="form-control" id="nama_acara" name="nama_acara" required>
+                                    <input type="text" class="form-control" id="event_name" name="event_name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="penyelenggara">Penyelenggara</label>
-                                    <input type="text" class="form-control" id="penyelenggara" name="penyelenggara" required>
+                                    <input type="text" class="form-control" id="organizer" name="organizer" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="mulai_acara">Mulai</label>
-                                    <input type="date" class="form-control" id="mulai_acara" name="mulai_acara" required>
+                                    <input type="date" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="selesai_acara">Selesai</label>
-                                    <input type="date" class="form-control" id="selesai_acara" name="selesai_acara" required>
+                                    <input type="date" class="form-control" id="end_date" name="end_date" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
                             </form>
@@ -47,28 +47,53 @@
                     </div>
                 </div>
             </div>
-
             <hr>
             <div class="container">
-                <div class="row mb-3">
-                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
-                        27 Desember 2020
-                    </div>
-                    <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Changing The Way You Think To Fulfil Your Potential</p>
-                        <p class="mb-0 pb-0">Telkom University</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
-                        27 Maret 2020 - 29 April 2020
-                    </div>
-                    <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Nama Seminar / Training</p>
-                        <p class="mb-0 pb-0">Penyelenggaranya</p>
-                    </div>
-                </div>
+                @php
+                    $bulan = array(
+                        1 =>   'Januari',
+                        'Februari',
+                        'Maret',
+                        'April',
+                        'Mei',
+                        'Juni',
+                        'Juli',
+                        'Agustus',
+                        'September',
+                        'Oktober',
+                        'November',
+                        'Desember'
+                    );
+                @endphp
                 
+                @foreach($data_seminar as $key=>$value)
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold mr-0 pr-0">
+                            @php
+                               $start = explode("-", $value->start_date);
+                               $end = explode("-", $value->end_date);
+                               $start_date = $start[2].' '.$bulan[(int) $start[1]].' '.$start[0];
+                               if ($value->end_date > now()){
+                                   $end_date = "Present";
+                               } else{
+                                   $end_date = $end[2].' '.$bulan[(int) $end[1]].' '.$end[0];
+                               }
+
+                               #Code below is checking if the seminar event was held in one date only
+
+                               if ($value->start_date != $value->end_date){
+                                   echo $start_date.' - '.$end_date;
+                               } else{
+                                   echo $end_date;
+                               }
+                            @endphp
+                        </div>
+                        <div class="col-sm-8 ml-0 pl-0">
+                            <p class="font-weight-bold mb-0 pb-0">{{ucwords($value->event_name)}}</p>
+                            <p class="mb-0 pb-0">{{ucwords($value->organizer)}}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -5,55 +5,58 @@
     </a>
     <div class="collapse show" id="datadiri">
         <div class="card-body">
-            <form>
-                <div class="form-group row">
-                    <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Lengkap">
+            <form class="w-100" method="POST" action="{{ url('/cv/datadiri').'/'.$data_biodata[0]->id }}">
+                @csrf
+                @foreach($data_biodata as $key=>$value)
+                    <div class="form-group row">
+                        <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="fullname" name="fullname" value="{{ucwords($value->fullname)}}" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" name="email" value="{{$value->email}}" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Domisili</label>
-                    <div class="col-sm-5">
-                        <label for="negara" class="col-form-label">Negara</label>
-                        <input type="text" class="form-control" id="negara" name="negara" placeholder="Negara">
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Domisili</label>
+                        <div class="col-sm-5">
+                            <label for="negara" class="col-form-label">Negara</label>
+                            <input type="text" class="form-control" id="country" name="country" value="{{ucwords($value->country)}}">
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="kota" class="col-form-label">Kota</label>
+                            <input type="text" class="form-control" id="city" name="city" value="{{ucwords($value->city)}}">
+                        </div>
                     </div>
-                    <div class="col-sm-5">
-                        <label for="kota" class="col-form-label">Kota</label>
-                        <input type="text" class="form-control" id="kota" name="kota" placeholder="Kota/Kabupaten">
+                    <div class="form-group row">
+                        <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="birthday" name="birthday"
+                                value="{{$value->birthday}}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                    <div class="col-sm-10">
-                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir"
-                            placeholder="Tanggal Lahir">
+                    <div class="form-group row">
+                        <label for="no_hp" class="col-sm-2 col-form-label">No. HP</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="phone" name="phone" value="{{$value->phone}}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="no_hp" class="col-sm-2 col-form-label">No. HP</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Nomor Handphone">
+                    <div class="form-group row">
+                        <label for="linkedin" class="col-sm-2 col-form-label">LinkedIn</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="linkedIn" name="linkedIn"
+                                value="{{$value->linkedIn}}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <label for="linkedin" class="col-sm-2 col-form-label">LinkedIn</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="linkedin" name="linkedin"
-                            placeholder="Link LinkedIn">
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary">Edit Data</button>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-primary">Edit Data</button>
-                    </div>
-                </div>
+                @endforeach
             </form>
         </div>
     </div>

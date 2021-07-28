@@ -26,19 +26,19 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="nama_org">Nama Organisasi</label>
-                                    <input type="text" class="form-control" id="nama_org" name="nama_org" required>
+                                    <input type="text" class="form-control" id="organization_name" name="organization_name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="role_org">Role</label>
-                                    <input type="text" class="form-control" id="role_org" name="role_org" required>
+                                    <input type="text" class="form-control" id="role" name="role" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="mulai_org">Mulai</label>
-                                    <input type="month" class="form-control" id="mulai_org" name="mulai_org" required>
+                                    <input type="month" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="selesai_org">Selesai</label>
-                                    <input type="month" class="form-control" id="selesai_org" name="selesai_org" required>
+                                    <input type="month" class="form-control" id="end_date" name="end_date" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
                             </form>
@@ -49,15 +49,44 @@
 
             <hr>
             <div class="container">
-                <div class="row mb-3">
-                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
-                        Desember, 2020 - Januari, 2021
+                @php
+                    $bulan = array(
+                        1 =>   'Januari',
+                        'Februari',
+                        'Maret',
+                        'April',
+                        'Mei',
+                        'Juni',
+                        'Juli',
+                        'Agustus',
+                        'September',
+                        'Oktober',
+                        'November',
+                        'Desember'
+                    );
+                @endphp
+
+                @foreach($data_organization as $key=>$value)
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold mr-0 pr-0">
+                            @php
+                               $start = explode("-", $value->start_date);
+                               $end = explode("-", $value->end_date);
+                               $start_date = $bulan[(int) $start[1]].', '.$start[0];
+                               if ($value->end_date > now()){
+                                   $end_date = "Present";
+                               } else{
+                                   $end_date = $bulan[(int) $end[1]].', '.$end[0];
+                               }
+                               echo $start_date.' - '.$end_date;
+                            @endphp
+                        </div>
+                        <div class="col-sm-8 ml-0 pl-0">
+                            <p class="font-weight-bold mb-0 pb-0">{{ucwords($value->organization_name)}}</p>
+                            <p class="font-italic mb-0 pb-0">{{ucwords($value->role)}}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Nama Organisasi</p>
-                        <p class="font-italic mb-0 pb-0">Role</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

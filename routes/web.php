@@ -27,10 +27,12 @@ Route::get('/certificate/pdf2/{id}', [CertificateController::class, 'pdf2']);
 
 // cv
 Route::get('/cv', [CVController::class, 'index']);
-Route::post('/cv/pendidikan', [CVController::class, 'pendidikan']);
 Route::get('/cv/download_cv', [CVController::class, 'pdf']);
 Route::get('/cv/download_cv1', [CVController::class, 'pdf1']);
 Route::get('/cv/download_cv2', [CVController::class, 'pdf2']);
-
-
+Route::post('/cv/datadiri/{id}', [CVController::class, 'store_biodata']);
+Route::post('/cv/pendidikan', [CVController::class, 'store_education']);
+Route::post('/cv/seminar_training', [CVController::class, 'store_seminar']);
+Route::post('/cv/proyek', [CVController::class, 'store_project']);
+Route::post('/cv/org', [CVController::class, 'store_organization']);
 

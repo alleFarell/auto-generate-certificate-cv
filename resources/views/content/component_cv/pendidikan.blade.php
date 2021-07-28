@@ -26,27 +26,27 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="universitas">Universitas/Institut/Sekolah</label>
-                                    <input type="text" class="form-control" id="universitas" name="universitas" required>
+                                    <input type="text" class="form-control" id="university" name="university" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="gelar">Gelar</label>
-                                    <input type="text" class="form-control" id="gelar" name="gelar" required>
+                                    <input type="text" class="form-control" id="degree" name="degree" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="jurusan">Jurusan</label>
-                                    <input type="text" class="form-control" id="jurusan" name="jurusan" required>
+                                    <input type="text" class="form-control" id="major" name="major" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="mulai">Mulai</label>
-                                    <input type="month" class="form-control" id="mulai" name="mulai" required>
+                                    <input type="month" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="selesai">Selesai</label>
-                                    <input type="month" class="form-control" id="selesai" name="selesai" required>
+                                    <input type="month" class="form-control" id="end_date" name="end_date" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="ipk">IPK</label>
-                                    <input type="text" class="form-control" id="ipk" name="ipk" required>
+                                    <input type="text" class="form-control" id="gpa" name="gpa" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
                             </form>
@@ -56,36 +56,45 @@
             </div>
             <hr>
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
-                        Agustus, 2018 - Juli, 2022
+                @php
+                    $bulan = array(
+                        1 =>   'Januari',
+                        'Februari',
+                        'Maret',
+                        'April',
+                        'Mei',
+                        'Juni',
+                        'Juli',
+                        'Agustus',
+                        'September',
+                        'Oktober',
+                        'November',
+                        'Desember'
+                    );
+                @endphp
+
+                @foreach($data_education as $key=>$value)
+                    <div class="row">
+                        <div class="col-sm-4 font-weight-bold mr-0 pr-0">
+                            @php
+                               $start = explode("-", $value->start_date);
+                               $end = explode("-", $value->end_date);
+                               $start_date = $bulan[(int) $start[1]].', '.$start[0];
+                               if ($value->end_date > now()){
+                                   $end_date = "Present";
+                               } else{
+                                   $end_date = $bulan[(int) $end[1]].', '.$end[0];
+                               }
+                               echo $start_date.' - '.$end_date;
+                            @endphp
+                        </div>
+                        <div class="col-sm-8 ml-0 pl-0">
+                            <p class="font-weight-bold mb-0 pb-0">{{ucwords($value->university)}} - {{ucwords($value->degree)}}</p>
+                            <p class="mb-0 pb-0">{{ucwords($value->major)}}</p>
+                            <p>{{$value->gpa}}/4.00</p>
+                        </div>
                     </div>
-                    <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Telkom University - Sarjana / Bachelor</p>
-                        <p class="mb-0 pb-0">Informatika</p>
-                        <p>3.00/4.00</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
-                        Oktober, 2022 - Agustus, 2024
-                    </div>
-                    <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Institut Teknologi Bandung - Master / Magister</p>
-                        <p class="mb-0 pb-0">Nama Jurusan</p>
-                        <p>3.00/4.00</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
-                        September, 2024 - November, 2027
-                    </div>
-                    <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Institut Teknologi Bandung - Doktor / Doctor</p>
-                        <p class="mb-0 pb-0">Nama Jurusan</p>
-                        <p>3.00/4.00</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

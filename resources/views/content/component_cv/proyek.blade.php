@@ -26,7 +26,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="nama_proyek">Nama Proyek</label>
-                                    <input type="text" class="form-control" id="nama_proyek" name="nama_proyek" required>
+                                    <input type="text" class="form-control" id="project_name" name="project_name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
@@ -34,15 +34,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="mulai_proyek">Mulai</label>
-                                    <input type="month" class="form-control" id="mulai_proyek" name="mulai_proyek" required>
+                                    <input type="month" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="selesai_proyek">Selesai</label>
-                                    <input type="month" class="form-control" id="selesai_proyek" name="selesai_proyek" required>
+                                    <input type="month" class="form-control" id="end_date" name="end_date" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="deskripsi">Deskripsi</label>
-                                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows=5 required></textarea>
+                                    <textarea class="form-control" id="description" name="description" rows=5 required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
                             </form>
@@ -53,16 +53,45 @@
 
             <hr>
             <div class="container">
-                <div class="row mb-3">
-                    <div class="col-sm-4 font-weight-bold mr-0 pr-0">
-                        Desember, 2020 - Januari, 2021
+                @php
+                    $bulan = array(
+                        1 =>   'Januari',
+                        'Februari',
+                        'Maret',
+                        'April',
+                        'Mei',
+                        'Juni',
+                        'Juli',
+                        'Agustus',
+                        'September',
+                        'Oktober',
+                        'November',
+                        'Desember'
+                    );
+                @endphp
+
+                @foreach($data_project as $key=>$value)
+                    <div class="row mb-3">
+                        <div class="col-sm-4 font-weight-bold mr-0 pr-0">
+                            @php
+                               $start = explode("-", $value->start_date);
+                               $end = explode("-", $value->end_date);
+                               $start_date = $bulan[(int) $start[1]].', '.$start[0];
+                               if ($value->end_date > now()){
+                                   $end_date = "Present";
+                               } else{
+                                   $end_date = $bulan[(int) $end[1]].', '.$end[0];
+                               }
+                               echo $start_date.' - '.$end_date;
+                            @endphp
+                        </div>
+                        <div class="col-sm-8 ml-0 pl-0">
+                            <p class="font-weight-bold mb-0 pb-0">{{ucwords($value->project_name)}}</p>
+                            <p class="font-italic mb-0 pb-0">{{ucwords($value->role)}}</p>
+                            <p class="mb-0 pb-0">{{ucfirst($value->description)}}</p>
+                        </div>
                     </div>
-                    <div class="col-sm-8 ml-0 pl-0">
-                        <p class="font-weight-bold mb-0 pb-0">Nama Proyek</p>
-                        <p class="font-italic mb-0 pb-0">Role</p>
-                        <p class="mb-0 pb-0">Deskripsi</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

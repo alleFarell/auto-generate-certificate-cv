@@ -64,11 +64,29 @@
     }
 
 </style>
+
+@php
+    $bulan = array(
+        1 =>   'Januari',
+        'Februari',
+        'Maret',
+        'April',
+        'Mei',
+        'Juni',
+        'Juli',
+        'Agustus',
+        'September',
+        'Oktober',
+        'November',
+        'Desember'
+    );
+@endphp
+
 <page footer="page">
     <div class="header">
-        <h1 class="nama">Ghina Khoerunnisa</h1>
-        <p class="dom_wa">Bandung, Indonesia | (+62) 85279630592</p>
-        <p class="email_linkedin">gkhoerunnisa@gmail.com | linkedin.com/in/ghina-khoerunnisa/</p>
+        <h1 class="nama">{{ucwords($data_biodata[0]->fullname)}}</h1>
+        <p class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</p>
+        <p class="email_linkedin">{{$data_biodata[0]->email}} | {{$data_biodata[0]->linkedIn}}</p>
     </div>
 
     <div class="contain">
@@ -78,24 +96,26 @@
     <div class="contain">
         <h3>Pendidikan</h3>
     </div>
-    <div class="contain">
-        <div class="heading">Telkom University (Sarjana)</div>
-        <div class="sub">Agustus 2018 s/d Juli 2022</div>
-        <div class="sub">Jurusan Informatika</div>
-        <div class="sub">IPK : 3.00/4.00</div>
-    </div>
-    <div class="contain">
-        <div class="heading">Institut Teknologi Bandung (Magister)</div>
-        <div class="sub">Oktober 2022 s/d Agustus 2024</div>
-        <div class="sub">Jurusan Informatika</div>
-        <div class="sub">IPK : 3.00/4.00</div>
-    </div>
-    <div class="contain">
-        <div class="heading">Institut Teknologi Bandung (Doktor)</div>
-        <div class="sub">September 2024 s/d November 2027</div>
-        <div class="sub">Jurusan Informatika</div>
-        <div class="sub">IPK : 3.00/4.00</div>
-    </div>
+    @foreach($data_education as $key=>$value)
+        <div class="contain">
+            <div class="heading">{{ucwords($value->university)}} ({{ucwords($value->degree)}})</div>
+            <div class="sub">
+                @php
+                    $start = explode("-", $value->start_date);
+                    $end = explode("-", $value->end_date);
+                    $start_date = $bulan[(int) $start[1]].' '.$start[0];
+                    if ($value->end_date > now()){
+                        $end_date = "Present";
+                    } else{
+                        $end_date = $bulan[(int) $end[1]].' '.$end[0];
+                    }
+                    echo $start_date.' s/d '.$end_date;
+                @endphp
+            </div>
+            <div class="sub">{{$value->major}}</div>
+            <div class="sub">IPK : {{$value->gpa}}/4.00</div>
+        </div>
+    @endforeach
 
     <div class="contain">
         <div class="batas"></div>
@@ -104,16 +124,32 @@
     <div class="contain">
         <h3>Seminar & Training</h3>
     </div>
-    <div class="contain">
-        <div class="heading">Changing The Way You Think To Fulfil Your Potential</div>
-        <div class="sub">27 Desember 2020</div>
-        <div class="sub">Direktorat Karir, Alumni & Endowment Telkom University</div>
-    </div>
-    <div class="contain">
-        <div class="heading">Nama Seminar / Training</div>
-        <div class="sub">27 Maret 2020 s/d 29 April 2020</div>
-        <div class="sub">Penyelenggaranya</div>
-    </div>
+    @foreach($data_seminar as $key=>$value)
+        <div class="contain">
+            <div class="heading">{{ucwords($value->event_name)}}</div>
+            <div class="sub">
+                @php
+                    $start = explode("-", $value->start_date);
+                    $end = explode("-", $value->end_date);
+                    $start_date = $start[2].' '.$bulan[(int) $start[1]].' '.$start[0];
+                    if ($value->end_date > now()){
+                        $end_date = "Present";
+                    } else{
+                        $end_date = $end[2].' '.$bulan[(int) $end[1]].' '.$end[0];
+                    }
+
+                    #Code below is checking if the seminar event was held in one date only
+
+                    if ($value->start_date != $value->end_date){
+                        echo $start_date.' s/d '.$end_date;
+                    } else{
+                        echo $end_date;
+                    }
+                @endphp
+            </div>
+            <div class="sub">{{ucwords($value->organizer)}}</div>
+        </div>
+    @endforeach
 
     <div class="contain">
         <div class="batas"></div>
@@ -122,29 +158,25 @@
     <div class="contain">
         <h3>Proyek</h3>
     </div>
-    <div class="contain">
-        <div class="heading">Simulasi Penyebaran Virus (Random Walk 2 Dimensi dengan 4
-            Arah) - Programmer</div>
-        <div class="sub">Juni 2021 s/d Juni 2021</div>
-        <div class="sub">Untuk memenuhi tugas besar mata kuliah Pemodelan dan Simulasi. Membuat
-            simulasi bagaimana virus menyebar di suatu komunitas dengan ketentuan yang telah diberikan dan
-            menghitung waktu pulih komunitas tersebut</div>
-    </div>
-    <div class="contain">
-        <div class="heading">Simple Activity Log (Client-Server Socket) - Programmer</div>
-        <div class="sub">Juni 2021 s/d Juni 2021</div>
-        <div class="sub">Merupakan tugas besar mata kuliah Sistem Paralel dan Terdistribusi. Membuat
-            program sederhana mengenai activity logging client dan server. Pada tugas ini saya menggunakan
-            socket (Inter-Process Communication)</div>
-    </div>
-    <div class="contain">
-        <div class="heading">Multi-Channel Contacts (Data Analytics Challenge)</div>
-        <div class="sub">Maret 2021 s/d Maret 2021</div>
-        <div class="sub">Mengidentifikasi setiap tiket ke customer service, jika user memiliki
-            informasi kontak yang sama dengan asumsi bahwa setiap kontak dengan nomor telepon atau email yang sama
-            adalah pengguna yang sama. Menjadi anggota dan berkontribusi dalam menganalisis data.
-            Mendapatkan skor sebesar 0.66587</div>
-    </div>
+    @foreach($data_project as $key=>$value)
+        <div class="contain">
+            <div class="heading">{{ucwords($value->project_name)}} - {{ucwords($value->role)}}</div>
+            <div class="sub">
+                @php
+                    $start = explode("-", $value->start_date);
+                    $end = explode("-", $value->end_date);
+                    $start_date = $bulan[(int) $start[1]].' '.$start[0];
+                    if ($value->end_date > now()){
+                        $end_date = "Present";
+                    } else{
+                        $end_date = $bulan[(int) $end[1]].' '.$end[0];
+                    }
+                    echo $start_date.' s/d '.$end_date;
+                @endphp
+            </div>
+            <div class="sub">{{ucfirst($value->description)}}</div>
+        </div>
+    @endforeach
 
     <div class="contain">
         <div class="batas"></div>
@@ -153,21 +185,25 @@
     <div class="contain">
         <h3>Pengalaman Organisasi</h3>
     </div>
-    <div class="contain">
-        <div class="heading">Big Data Laboratory Telkom University</div>
-        <div class="sub">Maret 2021 s/d Maret 2022</div>
-        <div class="sub">Aslab Lomba</div>
-    </div>
-    <div class="contain">
-        <div class="heading">Nama Organisasi</div>
-        <div class="sub">September 2021 - Oktober 2022</div>
-        <div class="sub">Posisi / Role</div>
-    </div>
-    <div class="contain">
-        <div class="heading">Nama Organisasi</div>
-        <div class="sub">September 2021 - Oktober 2022</div>
-        <div class="sub">Posisi / Role</div>
-    </div>
+    @foreach($data_organization as $key=>$value)
+        <div class="contain">
+            <div class="heading">{{ucwords($value->organization_name)}}</div>
+            <div class="sub">
+                @php
+                    $start = explode("-", $value->start_date);
+                    $end = explode("-", $value->end_date);
+                    $start_date = $bulan[(int) $start[1]].' '.$start[0];
+                    if ($value->end_date > now()){
+                        $end_date = "Present";
+                    } else{
+                        $end_date = $bulan[(int) $end[1]].' '.$end[0];
+                    }
+                    echo $start_date.' s/d '.$end_date;
+                @endphp
+            </div>
+            <div class="sub">{{ucwords($value->role)}}</div>
+        </div>
+    @endforeach
 
     <div class="contain">
         <div class="batas"></div>

@@ -83,131 +83,64 @@
 <page backcolor=#ffffff footer="page">
     <div class="container">
         <div class="header">
-            <h1 class="nama">Ghina Khoerunnisa</h1>
-            <p class="dom_wa">Bandung, Indonesia | (+62) 85279630592</p>
-            <p class="email_linkedin">ghinak@student.telkomuniversity.ac.id | linkedin.com/in/ghina-khoerunnisa/</p>
+            <h1 class="nama">{{$data_biodata[0]->fullname}}</h1>
+            <p class="dom_wa">{{$data_biodata[0]->city}}, {{$data_biodata[0]->country}} | {{$data_biodata[0]->phone}}</p>
+            <p class="email_linkedin">{{$data_biodata[0]->email}} | {{$data_biodata[0]->linkedIn}}</p>
         </div>
     </div>
     <div class="batas"></div>
     <div class="container">
         <h3>Pendidikan</h3>
         <table>
-            <tr>
-                <td class="kiri">Agustus 2018 - Juli 2022</td>
-                <td class="kanan"><span class="title">Telkom University - Sarjana / Bachelor</span><br>
-                    <div class="subs">Informatika</div>
-                    <div class="subs">3.00/4.00</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">Oktober 2022 - Agustus 2024</td>
-                <td class="kanan"><span class="title">Institut Teknologi Bandung - Master / Magister</span><br>
-                    <div class="subs">Informatika</div>
-                    <div class="subs">3.00/4.00</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">September 2024 - November 2027</td>
-                <td class="kanan"><span class="title">Institut Teknologi Bandung - Doktor / Doctor</span><br>
-                    <div class="subs">Informatika</div>
-                    <div class="subs">3.00/4.00</div>
-                </td>
-            </tr>
+            @foreach($data_education as $key=>$value)
+                <tr>
+                    <td class="kiri">Agustus 2018 - Juli 2022</td>
+                    <td class="kanan"><span class="title">{{$value->university}} - {{$value->degree}}</span><br>
+                        <div class="subs">{{$value->major}}</div>
+                        <div class="subs">{{$value->gpa}}/4.00</div>
+                    </td>
+                </tr>
+            @endforeach
         </table>
     </div>
     <div class="container">
         <h3>Seminar & Training</h3>
         <table>
-            <tr>
-                <td class="kiri">27 Desember 2020</td>
-                <td class="kanan"><span class="title">Changing The Way You Think To Fulfil Your Potential</span><br>
-                    <div class="subs">Telkom University</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">27 Maret 2020 - 29 April 2020</td>
-                <td class="kanan"><span class="title">Nama Seminar / Training</span><br>
-                    <div class="subs">Penyelenggaranya</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">27 Maret 2020 - 29 Agustus 2020</td>
-                <td class="kanan"><span class="title">Nama Seminar / Training</span><br>
-                    <div class="subs">Penyelenggaranya</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">27 Desember 2020</td>
-                <td class="kanan"><span class="title">Changing The Way You Think To Fulfil Your Potential</span><br>
-                    <div class="subs">Telkom University</div>
-                </td>
-            </tr>
+            @foreach($data_seminar as $key=>$value)
+                <tr>
+                    <td class="kiri">27 Desember 2020</td>
+                    <td class="kanan"><span class="title">{{$value->event_name}}</span><br>
+                        <div class="subs">{{$value->organizer}}</div>
+                    </td>
+                </tr>
+            @endforeach
         </table>
     </div>
     <div class="container">
         <h3>Proyek</h3>
         <table>
-            <tr>
-                <td class="kiri">Juni 2021 - Juni 2021</td>
-                <td class="kanan"><span class="title">Simulasi Penyebaran Virus (Random Walk 2 Dimensi dengan 4
-                        Arah)</span><br>
-                    <div class="subs italic">Programmer</div>
-                    <div class="subs-proyek">Untuk memenuhi tugas besar mata kuliah Pemodelan dan Simulasi. Membuat
-                        simulasi
-                        bagaimana virus menyebar di suatu komunitas dengan ketentuan yang telah diberikan dan
-                        menghitung waktu pulih komunitas tersebut</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">Juni 2021 - Juni 2021</td>
-                <td class="kanan"><span class="title">Simple Activity Log (Client-Server Socket)</span><br>
-                    <div class="subs italic">Programmer</div>
-                    <div class="subs-proyek">Merupakan tugas besar mata kuliah Sistem Paralel dan Terdistribusi. Membuat
-                        program
-                        sederhana mengenai activity logging client dan server. Pada tugas ini saya menggunakan
-                        socket (Inter-Process Communication)</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">Maret 2021 - Maret 2021</td>
-                <td class="kanan"><span class="title">Multi-Channel Contacts (Data Analytics Challenge)</span><br>
-                    <div class="subs italic">-</div>
-                    <div class="subs-proyek">Mengidentifikasi setiap tiket ke customer service, jika user memiliki
-                        informasi kontak yang
-                        sama dengan asumsi bahwa setiap kontak dengan nomor telepon atau email yang sama
-                        adalah pengguna yang sama. Menjadi anggota dan berkontribusi dalam menganalisis data.
-                        Mendapatkan skor sebesar 0.66587</div>
-                </td>
-            </tr>
+            @foreach($data_project as $key=>$value)
+                <tr>
+                    <td class="kiri">Juni 2021 - Juni 2021</td>
+                    <td class="kanan"><span class="title">{{$value->project_name}}</span><br>
+                        <div class="subs italic">{{$value->role}}</div>
+                        <div class="subs-proyek">{{$value->description}}</div>
+                    </td>
+                </tr>
+            @endforeach
         </table>
     </div>
     <div class="container">
         <h3>Organisasi</h3>
         <table>
-            <tr>
-                <td class="kiri">Maret 2021 - Maret 2022</td>
-                <td class="kanan"><span class="title">Big Data Laboratory Telkom University</span><br>
-                    <div class="subs italic">Aslab Lomba</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">September 2021 - Oktober 2022</td>
-                <td class="kanan"><span class="title">Nama Organisai</span><br>
-                    <div class="subs italic">Role</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">September 2021 - Oktober 2022</td>
-                <td class="kanan"><span class="title">Nama Organisai</span><br>
-                    <div class="subs italic">Role</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="kiri">September 2021 - Oktober 2022</td>
-                <td class="kanan"><span class="title">Nama Organisai</span><br>
-                    <div class="subs italic">Role</div>
-                </td>
-            </tr>
+            @foreach($data_organization as $key=>$value)
+                <tr>
+                    <td class="kiri">Maret 2021 - Maret 2022</td>
+                    <td class="kanan"><span class="title">{{$value->organization_name}}</span><br>
+                        <div class="subs italic">{{$value->role}}</div>
+                    </td>
+                </tr>
+            @endforeach
         </table>
     </div>
     <div class="container">

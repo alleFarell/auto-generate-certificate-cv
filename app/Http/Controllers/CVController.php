@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spipu\Html2Pdf\Html2Pdf;
+use App\Models\Biodata;
+use App\Models\Education;
+use App\Models\Seminar;
+use App\Models\Project;
+use App\Models\Organization;
 
 class CVController extends Controller
 {
@@ -13,8 +18,19 @@ class CVController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('content.cv');
+    {  
+        $data_biodata = Biodata::all();
+        $data_education = Education::all()->sortBy('start_date');
+        $data_seminar = Seminar::all()->sortBy('start_date');
+        $data_project = Project::all()->sortBy('start_date');
+        $data_organization = Organization::all()->sortBy('start_date');
+        return view('content.cv', 
+                compact('data_biodata', 
+                        'data_education', 
+                        'data_seminar', 
+                        'data_project', 
+                        'data_organization')
+        );
     }
 
     /**
@@ -24,7 +40,7 @@ class CVController extends Controller
      */
     public function create()
     {
-        //
+        return view('content.cv');
     }
 
     /**
@@ -33,9 +49,76 @@ class CVController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    
+    //store biodata to database
+    public function store_biodata(Request $request, $id)
     {
-        //
+        $model = Biodata::find($id);
+        $model->fullname = $request->fullname;
+        $model->email = $request->email;
+        $model->country = $request->country;
+        $model->city = $request->city;
+        $model->birthday = $request->birthday;
+        $model->phone = $request->phone;
+        $model->linkedIn = $request->linkedIn;
+        $model->update();
+        
+        return redirect('/cv');
+    }
+    
+    //store education to database
+    public function store_education(Request $request)
+    {
+        $model = new Education;
+        $model->university = $request->university;
+        $model->major = $request->major;
+        $model->degree = $request->degree;
+        $model->start_date = $request->start_date."-01";
+        $model->end_date = $request->end_date."-01";
+        $model->gpa = $request->gpa;
+        $model->save();
+        
+        return redirect('/cv');
+    }
+
+    //store seminar to database
+    public function store_seminar(Request $request)
+    {
+        $model = new Seminar;
+        $model->event_name = $request->event_name;
+        $model->organizer = $request->organizer;
+        $model->start_date = $request->start_date;
+        $model->end_date = $request->end_date;
+        $model->save();
+
+        return redirect('/cv');
+    }
+
+    //store project to database
+    public function store_project(Request $request)
+    {
+        $model = new Project;
+        $model->project_name = $request->project_name;
+        $model->role = $request->role;
+        $model->description = $request->description;
+        $model->start_date = $request->start_date."-01";
+        $model->end_date = $request->end_date."-01";
+        $model->save();
+
+        return redirect('/cv');
+    }
+
+    //store organization to database
+    public function store_organization(Request $request)
+    {
+        $model = new Organization;
+        $model->organization_name = $request->organization_name;
+        $model->role = $request->role;
+        $model->start_date = $request->start_date."-01";
+        $model->end_date = $request->end_date."-01";
+        $model->save();
+
+        return redirect('/cv');
     }
 
     /**
@@ -48,7 +131,7 @@ class CVController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -96,8 +179,20 @@ class CVController extends Controller
 
     public function pdf()
     {
+        $data_biodata = Biodata::all();
+        $data_education = Education::all()->sortBy('start_date');
+        $data_seminar = Seminar::all()->sortBy('start_date');
+        $data_project = Project::all()->sortBy('start_date');
+        $data_organization = Organization::all()->sortBy('start_date');
+        
+        //html2pdf
         $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,10,0,10));
-        $doc = view('content.component_cv.cv_pdf');
+        $doc = view('content.component_cv.cv_pdf', compact('data_biodata', 
+                                                            'data_education', 
+                                                            'data_seminar', 
+                                                            'data_project', 
+                                                            'data_organization')
+                );
         $html2pdf->pdf->SetTitle('CV_Ghina');
         $html2pdf->setTestIsImage(false);
         $html2pdf->writeHTML($doc, false);
@@ -108,6 +203,12 @@ class CVController extends Controller
 
     public function pdf1()
     {
+        $data_biodata = Biodata::all();
+        $data_education = Education::all()->sortBy('start_date');
+        $data_seminar = Seminar::all()->sortBy('start_date');
+        $data_project = Project::all()->sortBy('start_date');
+        $data_organization = Organization::all()->sortBy('start_date');
+
         // $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,10,0,10));
         // $doc = view('content.component_cv.cv_pdf1');
         // $html2pdf->pdf->SetTitle('CV_Ghina');
@@ -115,13 +216,30 @@ class CVController extends Controller
         // $html2pdf->writeHTML($doc, false);
         // $html2pdf->Output("CV_Ghina.pdf",'I');
 
-        return view('content.component_cv.cv_pdf1');
+        return view('content.component_cv.cv_pdf1', compact('data_biodata', 
+                                                            'data_education', 
+                                                            'data_seminar', 
+                                                            'data_project', 
+                                                            'data_organization')
+        );
     }
 
     public function pdf2()
     {
+        $data_biodata = Biodata::all();
+        $data_education = Education::all()->sortBy('start_date');
+        $data_seminar = Seminar::all()->sortBy('start_date');
+        $data_project = Project::all()->sortBy('start_date');
+        $data_organization = Organization::all()->sortBy('start_date');
+
+        //html2pdf
         $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,5,0,5));
-        $doc = view('content.component_cv.cv_pdf2');
+        $doc = view('content.component_cv.cv_pdf2', compact('data_biodata', 
+                                                            'data_education', 
+                                                            'data_seminar', 
+                                                            'data_project', 
+                                                            'data_organization')
+                );
         $html2pdf->pdf->SetTitle('CV_Ghina');
         $html2pdf->setTestIsImage(false);
         $html2pdf->writeHTML($doc, false);

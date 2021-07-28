@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBiodatasTable extends Migration
+class CreateBiodataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateBiodatasTable extends Migration
      */
     public function up()
     {
-        Schema::create('biodatas', function (Blueprint $table) {
+        Schema::create('biodata', function (Blueprint $table) {
             $table->id();
             $table->string('fullname');
             $table->string('email');
-            $table->string('negara');
-            $table->string('kota');
+            $table->string('country');
+            $table->string('city');
             $table->date('birthday');
             $table->string('phone');
             $table->string('linkedIn');
@@ -33,6 +33,6 @@ class CreateBiodatasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biodatas');
+        Schema::dropIfExists('biodata');
     }
 }
