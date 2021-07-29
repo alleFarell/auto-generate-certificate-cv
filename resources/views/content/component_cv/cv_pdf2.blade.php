@@ -31,11 +31,14 @@
         padding: 0px;
         margin: 10px 0px 10px 0px;
     }
-
+    
     h3 {
-        color: #5f9ea0;
+        /* color: #2541B1; */
+        color: #055052;
         padding: 0px;
-        margin: 0px 0px 10px 0px;
+        margin: 0px 0px 5px 0px;
+        font-size: 13pt;
+        text-transform: uppercase;
     }
 
     .contain {
@@ -48,6 +51,19 @@
         margin-bottom: 2px;
     }
 
+    .sub-head {
+        font-weight: bold;
+        font-size: 10.5pt;
+        margin: 3px 0px 3px 0px;
+        /* color: #5F6769; */
+        color: #4e5456;
+        /* color: #444a4b; */
+    }
+
+    .heading-role {
+        /* color: #2a4acb; */
+        color: #077074;
+    }
     .sub {
         margin: 3px 0px 3px 0px;
         text-align: justify;
@@ -86,140 +102,154 @@
     <div class="header">
         <h1 class="nama">{{ucwords($data_biodata[0]->fullname)}}</h1>
         <p class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</p>
-        <p class="email_linkedin">{{$data_biodata[0]->email}} | {{$data_biodata[0]->linkedIn}}</p>
+        <p class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn,12)}}</p>
     </div>
 
-    <div class="contain">
-        <div class="batas"></div>
-    </div>
-
-    <div class="contain">
-        <h3>Pendidikan</h3>
-    </div>
-    @foreach($data_education as $key=>$value)
+    @if(count($data_seminar) == 0)
+        <span></span>
+    @else
         <div class="contain">
-            <div class="heading">{{ucwords($value->university)}} ({{ucwords($value->degree)}})</div>
-            <div class="sub">
-                @php
-                    $start = explode("-", $value->start_date);
-                    $end = explode("-", $value->end_date);
-                    $start_date = $bulan[(int) $start[1]].' '.$start[0];
-                    if ($value->end_date > now()){
-                        $end_date = "Present";
-                    } else{
-                        $end_date = $bulan[(int) $end[1]].' '.$end[0];
-                    }
-                    echo $start_date.' s/d '.$end_date;
-                @endphp
-            </div>
-            <div class="sub">{{$value->major}}</div>
-            <div class="sub">IPK : {{$value->gpa}}/4.00</div>
+            <div class="batas"></div>
+            <h3>pendidikan</h3>
         </div>
-    @endforeach
-
-    <div class="contain">
-        <div class="batas"></div>
-    </div>
-
-    <div class="contain">
-        <h3>Seminar & Training</h3>
-    </div>
-    @foreach($data_seminar as $key=>$value)
-        <div class="contain">
-            <div class="heading">{{ucwords($value->event_name)}}</div>
-            <div class="sub">
-                @php
-                    $start = explode("-", $value->start_date);
-                    $end = explode("-", $value->end_date);
-                    $start_date = $start[2].' '.$bulan[(int) $start[1]].' '.$start[0];
-                    if ($value->end_date > now()){
-                        $end_date = "Present";
-                    } else{
-                        $end_date = $end[2].' '.$bulan[(int) $end[1]].' '.$end[0];
-                    }
-
-                    #Code below is checking if the seminar event was held in one date only
-
-                    if ($value->start_date != $value->end_date){
+        @foreach($data_education as $key=>$value)
+            <div class="contain">
+                <div class="heading">{{ucwords($value->university)}} ({{ucwords($value->degree)}})</div>
+                <div class="sub-head">
+                    @php
+                        $start = explode("-", $value->start_date);
+                        $end = explode("-", $value->end_date);
+                        $start_date = $bulan[(int) $start[1]].' '.$start[0];
+                        if ($value->end_date > now()){
+                            $end_date = "Present";
+                        } else{
+                            $end_date = $bulan[(int) $end[1]].' '.$end[0];
+                        }
                         echo $start_date.' s/d '.$end_date;
-                    } else{
-                        echo $end_date;
-                    }
-                @endphp
+                    @endphp
+                </div>
+                <div class="sub">{{$value->major}}</div>
+                <div class="sub">IPK : {{$value->gpa}}/4.00</div>
             </div>
-            <div class="sub">{{ucwords($value->organizer)}}</div>
-        </div>
-    @endforeach
-
-    <div class="contain">
-        <div class="batas"></div>
-    </div>
-
-    <div class="contain">
-        <h3>Proyek</h3>
-    </div>
-    @foreach($data_project as $key=>$value)
+        @endforeach
+    @endif       
+    @if(count($data_seminar) == 0)
+        <span></span>
+    @else
         <div class="contain">
-            <div class="heading">{{ucwords($value->project_name)}} - {{ucwords($value->role)}}</div>
-            <div class="sub">
-                @php
-                    $start = explode("-", $value->start_date);
-                    $end = explode("-", $value->end_date);
-                    $start_date = $bulan[(int) $start[1]].' '.$start[0];
-                    if ($value->end_date > now()){
-                        $end_date = "Present";
-                    } else{
-                        $end_date = $bulan[(int) $end[1]].' '.$end[0];
-                    }
-                    echo $start_date.' s/d '.$end_date;
-                @endphp
-            </div>
-            <div class="sub">{{ucfirst($value->description)}}</div>
+            <div class="batas"></div>
+            <h3>Seminar & Training</h3>
         </div>
-    @endforeach
+        @foreach($data_seminar as $key=>$value)
+            <div class="contain">
+                <div class="heading">{{ucwords($value->event_name)}}</div>
+                <div class="sub-head">
+                    @php
+                        $start = explode("-", $value->start_date);
+                        $end = explode("-", $value->end_date);
+                        $start_date = $start[2].' '.$bulan[(int) $start[1]].' '.$start[0];
+                        if ($value->end_date > now()){
+                            $end_date = "Present";
+                        } else{
+                            $end_date = $end[2].' '.$bulan[(int) $end[1]].' '.$end[0];
+                        }
 
-    <div class="contain">
-        <div class="batas"></div>
-    </div>
+                        #Code below is checking if the seminar event was held in one date only
 
-    <div class="contain">
-        <h3>Pengalaman Organisasi</h3>
-    </div>
-    @foreach($data_organization as $key=>$value)
+                        if ($value->start_date != $value->end_date){
+                            echo $start_date.' s/d '.$end_date;
+                        } else{
+                            echo $end_date;
+                        }
+                    @endphp
+                </div>
+                <div class="sub">{{ucwords($value->organizer)}}</div>
+            </div>
+        @endforeach
+    @endif
+
+    @if(count($data_project) == 0)
+        <span></span>
+    @else
         <div class="contain">
-            <div class="heading">{{ucwords($value->organization_name)}}</div>
-            <div class="sub">
-                @php
-                    $start = explode("-", $value->start_date);
-                    $end = explode("-", $value->end_date);
-                    $start_date = $bulan[(int) $start[1]].' '.$start[0];
-                    if ($value->end_date > now()){
-                        $end_date = "Present";
-                    } else{
-                        $end_date = $bulan[(int) $end[1]].' '.$end[0];
-                    }
-                    echo $start_date.' s/d '.$end_date;
-                @endphp
-            </div>
-            <div class="sub">{{ucwords($value->role)}}</div>
+            <div class="batas "></div>
+            <h3 >Proyek</h3>
         </div>
-    @endforeach
+        @foreach($data_project as $key=>$value)
+            <div class="contain">
+                <div class="heading">{{ucwords($value->project_name)}} - <span class="heading-role">{{ucwords($value->role)}}</span></div>
+                <div class="sub-head">
+                    @php
+                        $start = explode("-", $value->start_date);
+                        $end = explode("-", $value->end_date);
+                        $start_date = $bulan[(int) $start[1]].' '.$start[0];
+                        if ($value->end_date > now()){
+                            $end_date = "Present";
+                        } else{
+                            $end_date = $bulan[(int) $end[1]].' '.$end[0];
+                        }
+                        echo $start_date.' s/d '.$end_date;
+                    @endphp
+                </div>
+                <div class="sub">{{ucfirst($value->description)}}</div>
+            </div>
+        @endforeach
+    @endif
+
+    @if(count($data_organization) == 0)
+        <span></span>
+    @else
+        <div class="contain">
+            <div class="batas"></div>
+            <h3>Pengalaman Organisasi</h3>
+        </div>
+        @foreach($data_organization as $key=>$value)
+            <div class="contain">
+                <div class="heading">{{ucwords($value->organization_name)}}</div>
+                <div class="sub-head">
+                    @php
+                        $start = explode("-", $value->start_date);
+                        $end = explode("-", $value->end_date);
+                        $start_date = $bulan[(int) $start[1]].' '.$start[0];
+                        if ($value->end_date > now()){
+                            $end_date = "Present";
+                        } else{
+                            $end_date = $bulan[(int) $end[1]].' '.$end[0];
+                        }
+                        echo $start_date.' s/d '.$end_date;
+                    @endphp
+                </div>
+                <div class="sub">{{ucwords($value->role)}}</div>
+            </div>
+        @endforeach
+    @endif
 
     <div class="contain">
         <div class="batas"></div>
-    </div>
-
-    <div class="contain">
         <h3>Skill</h3>
     </div>
     <div class="contain">
         <div class="item">- Javascript</div>
+    </div>
+    <div class="contain">
         <div class="item">- HTML</div>
+    </div>
+    <div class="contain">
         <div class="item">- CSS</div>
+    </div>
+    <div class="contain">
         <div class="item">- Python3</div>
+    </div>
+    <div class="contain">
         <div class="item">- Golang</div>
+    </div>
+    <div class="contain">
         <div class="item">- Codeigniter</div>
+    </div>
+    <div class="contain">
         <div class="item">- Laravel</div>
+    </div>
+    <div class="contain">
         <div class="item">- Oracle SQL Developer</div>
     </div>
 </page>

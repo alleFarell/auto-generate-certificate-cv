@@ -9,6 +9,7 @@ use App\Models\Education;
 use App\Models\Seminar;
 use App\Models\Project;
 use App\Models\Organization;
+use Validator;
 
 class CVController extends Controller
 {
@@ -24,6 +25,7 @@ class CVController extends Controller
         $data_seminar = Seminar::all()->sortBy('start_date');
         $data_project = Project::all()->sortBy('start_date');
         $data_organization = Organization::all()->sortBy('start_date');
+
         return view('content.cv', 
                 compact('data_biodata', 
                         'data_education', 
@@ -69,16 +71,31 @@ class CVController extends Controller
     //store education to database
     public function store_education(Request $request)
     {
-        $model = new Education;
-        $model->university = $request->university;
-        $model->major = $request->major;
-        $model->degree = $request->degree;
-        $model->start_date = $request->start_date."-01";
-        $model->end_date = $request->end_date."-01";
-        $model->gpa = $request->gpa;
-        $model->save();
-        
-        return redirect('/cv');
+        $rules = [
+            'gpa'=> 'numeric|min:0|max:4'
+        ];
+ 
+        $messages = [
+            'gpa.numeric'          => 'IPK diisi dengan angka desimal (gunakan titik pada bilangan desimal)',
+            'gpa.min'          => 'IPK memiliki rentang minimal 0',
+            'gpa.max'          => 'IPK memiliki rentang maksimal 4',
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+         
+        if($validator->fails()){
+            return redirect('/cv')->withErrors($validator)->withInput($request->all());
+        } else {
+            $model = new Education;
+            $model->university = $request->university;
+            $model->major = $request->major;
+            $model->degree = $request->degree;
+            $model->start_date = $request->start_date."-01";
+            $model->end_date = $request->end_date."-01";
+            $model->gpa = $request->gpa;
+            $model->save();
+            return redirect('/cv');
+        }  
     }
 
     //store seminar to database
@@ -193,7 +210,7 @@ class CVController extends Controller
                                                             'data_project', 
                                                             'data_organization')
                 );
-        $html2pdf->pdf->SetTitle('CV_Ghina');
+        $html2pdf->pdf->SetTitle('CV_'.$data_biodata[0]['fullname']);
         $html2pdf->setTestIsImage(false);
         $html2pdf->writeHTML($doc, false);
         $html2pdf->Output("CV_Ghina.pdf",'I');
@@ -208,13 +225,6 @@ class CVController extends Controller
         $data_seminar = Seminar::all()->sortBy('start_date');
         $data_project = Project::all()->sortBy('start_date');
         $data_organization = Organization::all()->sortBy('start_date');
-
-        // $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,10,0,10));
-        // $doc = view('content.component_cv.cv_pdf1');
-        // $html2pdf->pdf->SetTitle('CV_Ghina');
-        // $html2pdf->setTestIsImage(false);
-        // $html2pdf->writeHTML($doc, false);
-        // $html2pdf->Output("CV_Ghina.pdf",'I');
 
         return view('content.component_cv.cv_pdf1', compact('data_biodata', 
                                                             'data_education', 
@@ -240,10 +250,10 @@ class CVController extends Controller
                                                             'data_project', 
                                                             'data_organization')
                 );
-        $html2pdf->pdf->SetTitle('CV_Ghina');
+        $html2pdf->pdf->SetTitle('CV_'.$data_biodata[0]['fullname']);
         $html2pdf->setTestIsImage(false);
         $html2pdf->writeHTML($doc, false);
-        $html2pdf->Output("CV_Ghina.pdf",'I');
+        $html2pdf->Output("CV_".$data_biodata[0]['fullname'].".pdf",'I');
 
         // return view('content.component_cv.cv_pdf2');
     }

@@ -14,7 +14,9 @@
                 $arr = ["Javascript", "HTML", "CSS", "PHP", "Python3", "Pandas", "Numpy", "Excel", "Golang" ,"Codeigniter", "Laravel", "Django", "C++", "Java", "Oracle SQL Developer", "MySql"];
             @endphp
             @for ($i=0; $i < count($arr); $i++)
-            <a class="btn btn-outline-primary mb-2">{{$arr[$i]}}</a>
+            <span class="btn btn-secondary mb-2">{{$arr[$i]}}<a href="" class="badge badge-pill badge-dark ml-2 ">
+                <span aria-hidden="true"> &times;</span>
+            </a></span>
             @endfor
             <!-- Modal -->
             <div class="modal fade" id="modal_skill" tabindex="-1" aria-labelledby="modalskillLabel"

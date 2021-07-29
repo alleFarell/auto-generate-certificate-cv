@@ -85,10 +85,56 @@
                                echo $start_date.' - '.$end_date;
                             @endphp
                         </div>
-                        <div class="col-sm-8 ml-0 pl-0">
+                        <div class="col-sm-6 ml-0 pl-0">
                             <p class="font-weight-bold mb-0 pb-0">{{ucwords($value->project_name)}}</p>
                             <p class="font-italic mb-0 pb-0">{{ucwords($value->role)}}</p>
                             <p class="mb-0 pb-0">{{ucfirst($value->description)}}</p>
+                        </div>
+                        <div class="col-sm-2 ml-0 pl-0">
+                            <a href="" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#proyek_edit{{$value->id }}">Edit</a>
+                            <a href="" class="btn btn-danger btn-sm">Hapus</a>
+
+                            <!-- Modal Edit-->
+                            <div class="modal fade" id="proyek_edit{{$value->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog ">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Proyek</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="w-100 " method="" action="">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="nama_proyek">Nama Proyek</label>
+                                                    <input type="text" class="form-control" id="project_name" name="project_name" value="{{$value->project_name}}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="role">Role</label>
+                                                    <input type="text" class="form-control" id="role" name="role" value="{{$value->role}}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="mulai_proyek">Mulai</label>
+                                                    <input type="month" class="form-control" id="start_date" name="start_date" value="{{ substr($value->start_date,0,7) }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="selesai_proyek">Selesai</label>
+                                                    <input type="month" class="form-control" id="end_date" name="end_date" value="{{ substr($value->end_date,0,7) }}" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="deskripsi">Deskripsi</label>
+                                                    <textarea class="form-control" id="description" name="description" rows=5 required>{{$value->description}}</textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary mb-3">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal Edit -->
                         </div>
                     </div>
                 @endforeach
