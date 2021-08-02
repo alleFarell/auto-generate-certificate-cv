@@ -93,7 +93,7 @@
                         <div class="col-sm-2 ml-0 pl-0">
                             <!-- Action Button for Edit & Delete -->
                             <a href="" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#proyek_edit{{$value->id }}">Edit</a>
-                            <a href="{{ url('/cv/proyek').'/'.$value->id.'/delete' }}" class="btn btn-danger btn-sm">Hapus</a>
+                            <a href="{{ url('/cv/proyek').'/'.$value->id.'/delete' }}" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm">Hapus</a>
 
                             <!-- Modal Edit-->
                             <div class="modal fade" id="proyek_edit{{$value->id }}" tabindex="-1"
