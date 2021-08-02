@@ -88,11 +88,12 @@
                         <div class="col-sm-6 ml-0 pl-0">
                             <p class="font-weight-bold mb-0 pb-0">{{ucwords($value->project_name)}}</p>
                             <p class="font-italic mb-0 pb-0">{{ucwords($value->role)}}</p>
-                            <p class="mb-0 pb-0">{{ucfirst($value->description)}}</p>
+                            <p class="mb-0 pb-0" style="text-align: justify;">{{ucfirst($value->description)}}</p>
                         </div>
                         <div class="col-sm-2 ml-0 pl-0">
+                            <!-- Action Button for Edit & Delete -->
                             <a href="" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#proyek_edit{{$value->id }}">Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Hapus</a>
+                            <a href="{{ url('/cv/proyek').'/'.$value->id.'/delete' }}" class="btn btn-danger btn-sm">Hapus</a>
 
                             <!-- Modal Edit-->
                             <div class="modal fade" id="proyek_edit{{$value->id }}" tabindex="-1"
@@ -106,7 +107,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="w-100 " method="" action="">
+                                            <form class="w-100 " method="POST" action="{{ url('/cv/proyek').'/'.$value->id.'/edit' }}">
                                                 @csrf
                                                 <div class="form-group">
                                                     <label for="nama_proyek">Nama Proyek</label>

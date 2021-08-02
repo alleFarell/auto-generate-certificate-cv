@@ -36,3 +36,14 @@ Route::post('/cv/seminar_training', [CVController::class, 'store_seminar']);
 Route::post('/cv/proyek', [CVController::class, 'store_project']);
 Route::post('/cv/org', [CVController::class, 'store_organization']);
 
+// cv Update by Id
+Route::post('/cv/pendidikan/{id}/edit', [CVController::class, 'update_education']);
+Route::post('/cv/seminar/{id}/edit', [CVController::class, 'update_seminar']);
+Route::post('/cv/proyek/{id}/edit', [CVController::class, 'update_project']);
+Route::post('/cv/org/{id}/edit', [CVController::class, 'update_organization']);
+
+// cv Delete by Id
+Route::get('/cv/pendidikan/{id}/delete', [CVController::class, 'destroy_education']);
+Route::get('/cv/seminar/{id}/delete', [CVController::class, 'destroy_seminar']);
+Route::get('/cv/proyek/{id}/delete', [CVController::class, 'destroy_project']);
+Route::get('/cv/org/{id}/delete', [CVController::class, 'destroy_organization']);

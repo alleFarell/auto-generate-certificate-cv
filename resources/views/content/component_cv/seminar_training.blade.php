@@ -93,8 +93,9 @@
                             <p class="mb-0 pb-0">{{ucwords($value->organizer)}}</p>
                         </div>
                         <div class="col-sm-2 ml-0 pl-0">
+                            <!-- Action Button for Edit & Delete -->
                             <a href="" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#seminar_edit{{$value->id }}" >Edit</a>
-                            <a href="" class="btn btn-danger btn-sm">Hapus</a>
+                            <a href="{{ url('/cv/seminar').'/'.$value->id.'/delete' }}" class="btn btn-danger btn-sm">Hapus</a>
 
                             <!-- Modal Edit-->
                             <div class="modal fade" id="seminar_edit{{$value->id }}" tabindex="-1"
@@ -108,7 +109,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="w-100 " method="" action="">
+                                            <form class="w-100 " method="POST" action="{{ url('/cv/seminar').'/'.$value->id.'/edit' }}">
                                                 @csrf
                                                 <div class="form-group">
                                                     <label for="nama_acara">Nama Acara</label>
