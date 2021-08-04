@@ -25,7 +25,7 @@
                             <form class="w-100 " method="POST" action="{{ url('/cv/proyek') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama_proyek">Nama Proyek</label>
+                                    <label for="project_name">Nama Proyek</label>
                                     <input type="text" class="form-control" id="project_name" name="project_name" required>
                                 </div>
                                 <div class="form-group">
@@ -33,15 +33,15 @@
                                     <input type="text" class="form-control" id="role" name="role" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mulai_proyek">Mulai</label>
+                                    <label for="start_date">Mulai</label>
                                     <input type="month" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="selesai_proyek">Selesai</label>
+                                    <label for="end_date">Selesai</label>
                                     <input type="month" class="form-control" id="end_date" name="end_date" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="deskripsi">Deskripsi</label>
+                                    <label for="description">Deskripsi</label>
                                     <textarea class="form-control" id="description" name="description" rows=5 required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
@@ -110,7 +110,7 @@
                                             <form class="w-100 " method="POST" action="{{ url('/cv/proyek').'/'.$value->id.'/edit' }}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="nama_proyek">Nama Proyek</label>
+                                                    <label for="project_name">Nama Proyek</label>
                                                     <input type="text" class="form-control" id="project_name" name="project_name" value="{{$value->project_name}}" required>
                                                 </div>
                                                 <div class="form-group">
@@ -118,15 +118,15 @@
                                                     <input type="text" class="form-control" id="role" name="role" value="{{$value->role}}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="mulai_proyek">Mulai</label>
+                                                    <label for="start_date">Mulai</label>
                                                     <input type="month" class="form-control" id="start_date" name="start_date" value="{{ substr($value->start_date,0,7) }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="selesai_proyek">Selesai</label>
+                                                    <label for="end_date">Selesai</label>
                                                     <input type="month" class="form-control" id="end_date" name="end_date" value="{{ substr($value->end_date,0,7) }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="deskripsi">Deskripsi</label>
+                                                    <label for="description">Deskripsi</label>
                                                     <textarea class="form-control" id="description" name="description" rows=5 required>{{$value->description}}</textarea>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>

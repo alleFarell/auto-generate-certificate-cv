@@ -96,6 +96,9 @@
         'November',
         'Desember'
     );
+
+    $str_skills = $data_biodata[0]->skills;
+    $arr_skills = explode('-', $str_skills)
 @endphp
 
 <page footer="page">
@@ -228,28 +231,10 @@
         <div class="batas"></div>
         <h3>Skill</h3>
     </div>
-    <div class="contain">
-        <div class="item">- Javascript</div>
-    </div>
-    <div class="contain">
-        <div class="item">- HTML</div>
-    </div>
-    <div class="contain">
-        <div class="item">- CSS</div>
-    </div>
-    <div class="contain">
-        <div class="item">- Python3</div>
-    </div>
-    <div class="contain">
-        <div class="item">- Golang</div>
-    </div>
-    <div class="contain">
-        <div class="item">- Codeigniter</div>
-    </div>
-    <div class="contain">
-        <div class="item">- Laravel</div>
-    </div>
-    <div class="contain">
-        <div class="item">- Oracle SQL Developer</div>
-    </div>
+    @for ($i=0; $i < count($arr_skills); $i++)
+        <div class="contain">
+            <div class="item">- {{ ucwords($arr_skills[$i]) }}</div>
+        </div>
+    @endfor
+
 </page>

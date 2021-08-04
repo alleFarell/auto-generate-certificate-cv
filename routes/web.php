@@ -27,14 +27,13 @@ Route::get('/certificate/pdf2/{id}', [CertificateController::class, 'pdf2']);
 
 // cv
 Route::get('/cv', [CVController::class, 'index']);
-Route::get('/cv/download_cv', [CVController::class, 'pdf']);
-Route::get('/cv/download_cv1', [CVController::class, 'pdf1']);
 Route::get('/cv/download_cv2', [CVController::class, 'pdf2']);
 Route::post('/cv/datadiri/{id}', [CVController::class, 'store_biodata']);
 Route::post('/cv/pendidikan', [CVController::class, 'store_education']);
 Route::post('/cv/seminar_training', [CVController::class, 'store_seminar']);
 Route::post('/cv/proyek', [CVController::class, 'store_project']);
 Route::post('/cv/org', [CVController::class, 'store_organization']);
+Route::post('/cv/skill/{id}', [CVController::class, 'store_skill']);
 
 // cv Update by Id
 Route::post('/cv/pendidikan/{id}/edit', [CVController::class, 'update_education']);
@@ -47,3 +46,4 @@ Route::get('/cv/pendidikan/{id}/delete', [CVController::class, 'destroy_educatio
 Route::get('/cv/seminar/{id}/delete', [CVController::class, 'destroy_seminar']);
 Route::get('/cv/proyek/{id}/delete', [CVController::class, 'destroy_project']);
 Route::get('/cv/org/{id}/delete', [CVController::class, 'destroy_organization']);
+Route::get('/cv/skills/{id}/{skill_name}/delete', [CVController::class, 'destroy_skill']);

@@ -25,19 +25,19 @@
                             <form class="w-100 " method="POST" action="{{ url('/cv/seminar_training') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama_acara">Nama Acara</label>
+                                    <label for="event_name">Nama Acara</label>
                                     <input type="text" class="form-control" id="event_name" name="event_name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="penyelenggara">Penyelenggara</label>
+                                    <label for="organizer">Penyelenggara</label>
                                     <input type="text" class="form-control" id="organizer" name="organizer" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mulai_acara">Mulai</label>
+                                    <label for="start_date">Mulai</label>
                                     <input type="date" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="selesai_acara">Selesai</label>
+                                    <label for="end_date">Selesai</label>
                                     <input type="date" class="form-control" id="end_date" name="end_date" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
@@ -112,19 +112,19 @@
                                             <form class="w-100 " method="POST" action="{{ url('/cv/seminar').'/'.$value->id.'/edit' }}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="nama_acara">Nama Acara</label>
+                                                    <label for="event_name">Nama Acara</label>
                                                     <input type="text" class="form-control" id="event_name" name="event_name" value="{{ $value->event_name }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="penyelenggara">Penyelenggara</label>
+                                                    <label for="organizer">Penyelenggara</label>
                                                     <input type="text" class="form-control" id="organizer" name="organizer" value="{{ $value->organizer }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="mulai_acara">Mulai</label>
+                                                    <label for="start_date">Mulai</label>
                                                     <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $value->start_date }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="selesai_acara">Selesai</label>
+                                                    <label for="end_date">Selesai</label>
                                                     <input type="date" class="form-control" id="end_date" name="end_date" value="{{ $value->end_date }}" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>

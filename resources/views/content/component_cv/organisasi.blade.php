@@ -25,19 +25,19 @@
                             <form class="w-100 " method="POST" action="{{ url('/cv/org') }}">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="nama_org">Nama Organisasi</label>
+                                    <label for="organization_name">Nama Organisasi</label>
                                     <input type="text" class="form-control" id="organization_name" name="organization_name" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="role_org">Role</label>
+                                    <label for="role">Role</label>
                                     <input type="text" class="form-control" id="role" name="role" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="mulai_org">Mulai</label>
+                                    <label for="start_date">Mulai</label>
                                     <input type="month" class="form-control" id="start_date" name="start_date" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="selesai_org">Selesai</label>
+                                    <label for="end_date">Selesai</label>
                                     <input type="month" class="form-control" id="end_date" name="end_date" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>
@@ -105,19 +105,19 @@
                                             <form class="w-100 " method="POST" action="{{ url('/cv/org').'/'.$value->id.'/edit' }}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label for="nama_org">Nama Organisasi</label>
+                                                    <label for="organization_name">Nama Organisasi</label>
                                                     <input type="text" class="form-control" id="organization_name" name="organization_name" value="{{$value->organization_name}}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="role_org">Role</label>
+                                                    <label for="role">Role</label>
                                                     <input type="text" class="form-control" id="role" name="role" value="{{$value->role}}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="mulai_org">Mulai</label>
+                                                    <label for="start_date">Mulai</label>
                                                     <input type="month" class="form-control" id="start_date" name="start_date" value="{{ substr($value->start_date,0,7) }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="selesai_org">Selesai</label>
+                                                    <label for="end_date">Selesai</label>
                                                     <input type="month" class="form-control" id="end_date" name="end_date" value="{{ substr($value->end_date,0,7) }}" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-primary mb-3">Submit</button>

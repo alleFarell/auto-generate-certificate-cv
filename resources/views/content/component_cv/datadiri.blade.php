@@ -9,7 +9,7 @@
                 @csrf
                 @foreach($data_biodata as $key=>$value)
                     <div class="form-group row">
-                        <label for="nama" class="col-sm-2 col-form-label">Nama Lengkap</label>
+                        <label for="fullname" class="col-sm-2 col-form-label">Nama Lengkap</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="fullname" name="fullname" value="{{ucwords($value->fullname)}}" readonly>
                         </div>
@@ -23,29 +23,29 @@
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Domisili</label>
                         <div class="col-sm-5">
-                            <label for="negara" class="col-form-label">Negara</label>
+                            <label for="country" class="col-form-label">Negara</label>
                             <input type="text" class="form-control" id="country" name="country" value="{{ucwords($value->country)}}">
                         </div>
                         <div class="col-sm-5">
-                            <label for="kota" class="col-form-label">Kota</label>
+                            <label for="city" class="col-form-label">Kota</label>
                             <input type="text" class="form-control" id="city" name="city" value="{{ucwords($value->city)}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="tgl_lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                        <label for="birthday" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                         <div class="col-sm-10">
                             <input type="date" class="form-control" id="birthday" name="birthday"
                                 value="{{$value->birthday}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="no_hp" class="col-sm-2 col-form-label">No. HP</label>
+                        <label for="phone" class="col-sm-2 col-form-label">No. HP</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="phone" name="phone" value="{{$value->phone}}">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="linkedin" class="col-sm-2 col-form-label">LinkedIn</label>
+                        <label for="linkedIn" class="col-sm-2 col-form-label">LinkedIn</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="linkedIn" name="linkedIn"
                                 value="{{$value->linkedIn}}">

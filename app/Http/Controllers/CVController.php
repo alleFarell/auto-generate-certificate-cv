@@ -138,6 +138,22 @@ class CVController extends Controller
         return redirect('/cv');
     }
 
+    public function store_skill(Request $request, $id)
+    {
+        $model = Biodata::find($id);
+        $current_skill = $model['skills'];
+        if (empty($current_skill)){
+            $new_skill = $request->skills;
+            $model->skills = $new_skill;
+        } else{
+            $new_skill = $current_skill.'-'.$request->skills;
+            $model->skills = $new_skill;
+        }
+        $model->update();
+
+        return redirect('/cv');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -267,44 +283,16 @@ class CVController extends Controller
         return redirect('/cv');
     }
 
-    public function pdf()
+    public function destroy_skill($id, $skill_name)
     {
-        $data_biodata = Biodata::all();
-        $data_education = Education::all()->sortBy('start_date');
-        $data_seminar = Seminar::all()->sortBy('start_date');
-        $data_project = Project::all()->sortBy('start_date');
-        $data_organization = Organization::all()->sortBy('start_date');
-        
-        //html2pdf
-        $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,10,0,10));
-        $doc = view('content.component_cv.cv_pdf', compact('data_biodata', 
-                                                            'data_education', 
-                                                            'data_seminar', 
-                                                            'data_project', 
-                                                            'data_organization')
-                );
-        $html2pdf->pdf->SetTitle('CV_'.$data_biodata[0]['fullname']);
-        $html2pdf->setTestIsImage(false);
-        $html2pdf->writeHTML($doc, false);
-        $html2pdf->Output("CV_Ghina.pdf",'I');
-
-        // return view('content.component_cv.cv_pdf');
-    }
-
-    public function pdf1()
-    {
-        $data_biodata = Biodata::all();
-        $data_education = Education::all()->sortBy('start_date');
-        $data_seminar = Seminar::all()->sortBy('start_date');
-        $data_project = Project::all()->sortBy('start_date');
-        $data_organization = Organization::all()->sortBy('start_date');
-
-        return view('content.component_cv.cv_pdf1', compact('data_biodata', 
-                                                            'data_education', 
-                                                            'data_seminar', 
-                                                            'data_project', 
-                                                            'data_organization')
-        );
+        $model = Biodata::find($id);
+        $skills = $model['skills'];
+        $arr_skills = explode('-', $skills);
+        $arr_skills = array_diff($arr_skills, array($skill_name));
+        $new_skills = implode('-', $arr_skills);
+        $model->skills = $new_skills;
+        $model->update();
+        return redirect('/cv');
     }
 
     public function pdf2()
