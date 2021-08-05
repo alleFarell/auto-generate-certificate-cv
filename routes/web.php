@@ -28,7 +28,7 @@ Route::get('/certificate/pdf2/{id}', [CertificateController::class, 'pdf2']);
 // cv
 Route::get('/cv', [CVController::class, 'index']);
 Route::get('/cv/download_cv2', [CVController::class, 'pdf2']);
-Route::post('/cv/datadiri/{id}', [CVController::class, 'store_biodata']);
+Route::post('/cv/datadiri', [CVController::class, 'store_biodata']);
 Route::post('/cv/pendidikan', [CVController::class, 'store_education']);
 Route::post('/cv/seminar_training', [CVController::class, 'store_seminar']);
 Route::post('/cv/proyek', [CVController::class, 'store_project']);
@@ -36,6 +36,7 @@ Route::post('/cv/org', [CVController::class, 'store_organization']);
 Route::post('/cv/skill/{id}', [CVController::class, 'store_skill']);
 
 // cv Update by Id
+Route::post('/cv/datadiri/{id}/edit', [CVController::class, 'update_biodata']);
 Route::post('/cv/pendidikan/{id}/edit', [CVController::class, 'update_education']);
 Route::post('/cv/seminar/{id}/edit', [CVController::class, 'update_seminar']);
 Route::post('/cv/proyek/{id}/edit', [CVController::class, 'update_project']);

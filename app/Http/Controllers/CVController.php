@@ -53,9 +53,9 @@ class CVController extends Controller
      */
     
     //store biodata to database
-    public function store_biodata(Request $request, $id)
+    public function store_biodata(Request $request)
     {
-        $model = Biodata::find($id);
+        $model = new Biodata;
         $model->fullname = $request->fullname;
         $model->email = $request->email;
         $model->country = $request->country;
@@ -63,7 +63,8 @@ class CVController extends Controller
         $model->birthday = $request->birthday;
         $model->phone = $request->phone;
         $model->linkedIn = $request->linkedIn;
-        $model->update();
+        $model->skills = '';
+        $model->save();
         
         return redirect('/cv');
     }
@@ -183,6 +184,22 @@ class CVController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function update_biodata(Request $request, $id)
+    {
+        $model = Biodata::find($id);
+        $model->fullname = $request->fullname;
+        $model->email = $request->email;
+        $model->country = $request->country;
+        $model->city = $request->city;
+        $model->birthday = $request->birthday;
+        $model->phone = $request->phone;
+        $model->linkedIn = $request->linkedIn;
+        $model->update();
+        
+        return redirect('/cv');
+    }
+
     public function update_education(Request $request, $id)
     {
         $rules = [

@@ -1,0 +1,10 @@
+Revisi cv:
+
+1. Error Handling bagian datadiri cv.
+
+Revisi certificate:
+
+1. Atribut database yang kurang:
+
+- Pembicara
+- tanggal dalam format (DD-MM-YYYY)
