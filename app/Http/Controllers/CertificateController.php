@@ -40,9 +40,10 @@ class CertificateController extends Controller
         $count_all = Certificate::count() + 1;
         // $count_type = Certificate::where('tipe','=',$request->tipe)->count();
         $parse_date = date_parse($request->tanggal_selesai);
-        $date_code = $parse_date['month'].'/'.$parse_date['year'];
+        $month_code = $parse_date['month'];
+        $year_code = $parse_date['year'];
         $model = new Certificate;
-        $model->nomor = $count_all.'/'.$request->tipe.'/'.$date_code;
+        $model->nomor = sprintf('%05d', $count_all).'/'.$request->tipe.'/'.sprintf('%02d', $month_code).'/'.$year_code;
         $model->nama = $request->nama;
         $model->nim = $request->nim;
         $model->tipe = $request->tipe;

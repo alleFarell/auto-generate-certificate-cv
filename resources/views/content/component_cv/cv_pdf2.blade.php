@@ -105,10 +105,14 @@
     <div class="header">
         <h1 class="nama">{{ucwords($data_biodata[0]->fullname)}}</h1>
         <p class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</p>
-        <p class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn,12)}}</p>
+        @if (($data_biodata[0]->linkedIn)=='-')
+            <p class="email_linkedin">{{$data_biodata[0]->email}}</p>
+        @else
+            <p class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn,12)}}</p>   
+        @endif
     </div>
 
-    @if(count($data_seminar) == 0)
+    @if(count($data_education) == 0)
         <span></span>
     @else
         <div class="contain">
@@ -227,6 +231,9 @@
         @endforeach
     @endif
 
+    @if(empty($data_biodata[0]->skills))
+        <span></span>
+    @else
     <div class="contain">
         <div class="batas"></div>
         <h3>Skill</h3>
@@ -236,5 +243,5 @@
             <div class="item">- {{ ucwords($arr_skills[$i]) }}</div>
         </div>
     @endfor
-
+    @endif
 </page>

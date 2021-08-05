@@ -21,7 +21,7 @@ class CreateBiodataTable extends Migration
             $table->string('city');
             $table->date('birthday');
             $table->string('phone');
-            $table->string('linkedIn');
+            $table->string('linkedIn')->nullable();
             $table->string('skills');
             $table->timestamps();
         });

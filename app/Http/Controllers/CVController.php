@@ -62,7 +62,11 @@ class CVController extends Controller
         $model->city = $request->city;
         $model->birthday = $request->birthday;
         $model->phone = $request->phone;
-        $model->linkedIn = $request->linkedIn;
+        if (empty($request->linkedIn)){
+            $model->linkedIn = '-';
+        } else {
+            $model->linkedIn = $request->linkedIn;
+        }
         $model->skills = '';
         $model->save();
         
@@ -194,7 +198,11 @@ class CVController extends Controller
         $model->city = $request->city;
         $model->birthday = $request->birthday;
         $model->phone = $request->phone;
-        $model->linkedIn = $request->linkedIn;
+        if (empty($request->linkedIn)){
+            $model->linkedIn = '-';
+        } else {
+            $model->linkedIn = $request->linkedIn;
+        }
         $model->update();
         
         return redirect('/cv');

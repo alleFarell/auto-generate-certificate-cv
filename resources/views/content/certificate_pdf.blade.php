@@ -72,7 +72,7 @@
             <td id="kiri">
             </td>
             <td id="tengah">
-                <p>{{$d->nomor}}</p>
+                <p>No: {{$d->nomor}}</p>
             </td>
             <td id="kanan">
             </td>
