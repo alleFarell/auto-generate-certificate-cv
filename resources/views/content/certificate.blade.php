@@ -12,8 +12,8 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th class="text-center">Tipe Event</th>
                         <th class="text-center">Nama Event</th>
+                        <th class="text-center">Pembicara</th>
                         <th class="text-center">Tanggal</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Action</th>
@@ -22,13 +22,49 @@
                 </thead>
                 <tbody>
                     @foreach($data as $key=>$value)
+                    @php
+                        $bulan = array(
+                                1 =>   'Januari',
+                                'Februari',
+                                'Maret',
+                                'April',
+                                'Mei',
+                                'Juni',
+                                'Juli',
+                                'Agustus',
+                                'September',
+                                'Oktober',
+                                'November',
+                                'Desember'
+                            );
+
+                        $hari = array(
+                                0 =>   'Minggu',
+                                'Senin',
+                                'Selasa',
+                                'Rabu',
+                                'Kamis',
+                                'Jumat',
+                                'Sabtu'
+                            );
+                        $hari_mulai = date('w', strtotime($value->tanggal_mulai));
+                        $hari_selesai = date('w', strtotime($value->tanggal_selesai));
+                        $komponen_mulai = explode("-",$value->tanggal_mulai);
+                        $komponen_selesai = explode("-",$value->tanggal_selesai);
+                        $mulai = $hari[(int) $hari_mulai].', '.$komponen_mulai[2].' '.$bulan[(int) $komponen_mulai[1]].' '.$komponen_mulai[0];
+                        $selesai = $hari[(int) $hari_selesai].', '.$komponen_selesai[2].' '.$bulan[(int) $komponen_selesai[1]].' '.$komponen_selesai[0];
+
+                        
+                        // var_dump($hari_mulai);die;
+
+                    @endphp
                         <tr>
-                            <td>{{ucwords($value->tipe)}}</td>
                             <td>{{ucwords($value->event)}}</td>
+                            <td>{{ucwords($value->pembicara)}}</td>
                             @if($value->tanggal_mulai != $value->tanggal_selesai)
-                                <td>{{ $value->tanggal_mulai }} - {{ $value->tanggal_selesai }}</td>
+                                <td>{{ $mulai }} - {{ $selesai }}</td>
                             @else
-                                <td>{{ $value->tanggal_mulai }}</td>
+                                <td>{{ $mulai }}</td>
                             @endif
 
                             @if (($value->status == "Hadir") && ($value->tanggal_selesai < now()))

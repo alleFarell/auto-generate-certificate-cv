@@ -37,12 +37,17 @@ class CertificateController extends Controller
      */
     public function store(Request $request)
     {
+        $count_all = Certificate::count() + 1;
+        // $count_type = Certificate::where('tipe','=',$request->tipe)->count();
+        $parse_date = date_parse($request->tanggal_selesai);
+        $date_code = $parse_date['month'].'/'.$parse_date['year'];
         $model = new Certificate;
-        $model->nomor = $request->nomor;
+        $model->nomor = $count_all.'/'.$request->tipe.'/'.$date_code;
         $model->nama = $request->nama;
         $model->nim = $request->nim;
         $model->tipe = $request->tipe;
         $model->event = $request->event;
+        $model->pembicara = $request->pembicara;
         $model->tanggal_mulai = $request->tanggal_mulai;
         $model->tanggal_selesai = $request->tanggal_selesai;
         $model->status = "-";

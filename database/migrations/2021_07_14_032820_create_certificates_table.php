@@ -20,6 +20,7 @@ class CreateCertificatesTable extends Migration
             $table->string('nim');
             $table->string('tipe');
             $table->string('event');
+            $table->string('pembicara');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->timestamps();

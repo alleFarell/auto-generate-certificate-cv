@@ -9,10 +9,10 @@
     <div class="mt-5">
         <form class="w-100 " method="POST" action="{{ url('/certificate') }}">
             @csrf
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="nomor">No Certificate</label>
                 <input type="text" class="form-control" id="nomor" name="nomor" required>
-            </div>
+            </div> --}}
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nama">Nama Lengkap</label>
@@ -37,6 +37,10 @@
             <div class="form-group">
                 <label for="event">Nama Event</label>
                 <input type="text" class="form-control" id="event" name="event" required>
+            </div>
+            <div class="form-group">
+                <label for="pembicara">Pembicara</label>
+                <input type="text" class="form-control" id="pembicara" name="pembicara" required>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
