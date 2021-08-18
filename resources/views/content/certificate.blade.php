@@ -8,6 +8,7 @@
     </div>
     <div class="card-body">
         <a class="btn btn-success mb-3" href="{{ url('/certificate/add-cert') }}">Input Data</a>
+        <a class="btn btn-success mb-3" href="{{ url('/certificate/add-template') }}">Upload Certificate Template</a>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>

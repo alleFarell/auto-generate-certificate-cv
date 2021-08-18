@@ -25,6 +25,10 @@ Route::post('/certificate', [CertificateController::class, 'store']);
 Route::get('/certificate/pdf/{id}', [CertificateController::class, 'pdf']);
 Route::get('/certificate/pdf2/{id}', [CertificateController::class, 'pdf2']);
 
+// Certificate Template
+Route::get('/certificate/add-template', [CertificateController::class, 'create_template']);
+Route::post('/certificate/upload-template', [CertificateController::class, 'store_template']);
+
 // cv
 Route::get('/cv', [CVController::class, 'index']);
 Route::get('/cv/download_cv2', [CVController::class, 'pdf2']);

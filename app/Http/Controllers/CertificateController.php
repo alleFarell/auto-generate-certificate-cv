@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Certificate;
+use App\Models\DesignCertificate;
 use Spipu\Html2Pdf\Html2Pdf;
 
 class CertificateController extends Controller
@@ -29,6 +30,11 @@ class CertificateController extends Controller
         return view('content.create_certificate');
     }
 
+    public function create_template()
+    {
+        return view('content.create_certif_template');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -52,6 +58,25 @@ class CertificateController extends Controller
         $model->tanggal_mulai = $request->tanggal_mulai;
         $model->tanggal_selesai = $request->tanggal_selesai;
         $model->status = "-";
+        $model->save();
+
+        return redirect('/certificate');
+    }
+
+    public function store_template(Request $request)
+    {
+        $request->validate([
+            'template-img' => 'required|mimes:jpg,jpeg,png'
+        ]);
+
+        $filename = $request->file("template-img")->getClientOriginalName();
+        $filesize = $request->file("template-img")->getSize();
+
+        $request->file('template-img')->storeAs('public/templates', $filename); 
+
+        $model = new DesignCertificate;
+        $model->filename = $filename;
+        $model->filesize = $filesize;
         $model->save();
 
         return redirect('/certificate');
