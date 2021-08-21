@@ -22,6 +22,7 @@
                 </thead>
                 <tbody>
                     @foreach($data as $key=>$value)
+                    
                     @php
                         $bulan = array(
                                 1 =>   'Januari',
@@ -66,7 +67,7 @@
                             @else
                                 <td>{{ $mulai }}</td>
                             @endif
-
+                            
                             @if (($value->status == "Hadir") && ($value->tanggal_selesai < now()))
                                 <td class="text-center"><a class="badge badge-success p-1">
                                     <i class="fas fa-check"></i><span> Selesai</span>

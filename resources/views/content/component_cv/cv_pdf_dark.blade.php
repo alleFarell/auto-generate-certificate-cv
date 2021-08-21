@@ -1,18 +1,21 @@
 <style>
     page {
-        font-family: times;
-        color: #ffffff;
+        font-family:poppinslight;
+        color: #D1D0D0;
     }
 
     .header {
-        text-align: center;
+        text-align: left;
         margin-bottom: 10px;
+        margin-left: 20px;
     }
 
     .nama {
         margin: 0;
         padding: 0;
-        font-size: 24pt;
+        font-size: 26pt;
+        font-family:poppinssemibold;
+        color: #DCC696;
     }
 
     .dom_wa {
@@ -28,19 +31,18 @@
     }
 
     .batas {
-        border-bottom: 0.5px solid white;
+        border-bottom: 0.5px solid #444941;
         padding: 0px;
         margin: 10px 0px 10px 0px;
     }
     
     h3 {
-        /* color: #2541B1; */
-        /* color: #055052;  ini fix */ 
-        color: #FFC5F6;
+        color: #DCC696;
         padding: 0px;
         margin: 0px 0px 5px 0px;
-        font-size: 13pt;
+        font-size: 14pt;
         text-transform: uppercase;
+        font-family:poppinsmedium;
     }
 
     .contain {
@@ -51,6 +53,7 @@
         font-weight: bold;
         font-size: 12pt;
         margin-bottom: 2px;
+        font-family:poppinsmedium;
     }
 
     .sub-head {
@@ -58,12 +61,13 @@
         font-size: 10.5pt;
         margin: 3px 0px 3px 0px;
         /* color: #4e5456; */
-        color: #D9D9D9;
+        color: #AAAAAA;
+        font-family:poppinsmedium;
     }
 
     .heading-role {
-        /* color: #077074; */
-        color: #E43397;
+        color: #E9CE8B;
+        /* color: #E43397; */
     }
     .sub {
         margin: 3px 0px 3px 0px;
@@ -102,7 +106,7 @@
     $arr_skills = explode('-', $str_skills)
 @endphp
 
-<page footer="page" backimg="{{ url('template/cv1.png') }}">
+<page footer="page" backimg="{{ url('template/cv_dark.png') }}">
     <div class="header">
         <h1 class="nama">{{ucwords($data_biodata[0]->fullname)}}</h1>
         <p class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</p>
@@ -113,11 +117,14 @@
         @endif
     </div>
 
+    <div class="contain">
+            <div class="batas"></div>
+        </div>
+
     @if(count($data_education) == 0)
         <span></span>
     @else
         <div class="contain">
-            <div class="batas"></div>
             <h3>pendidikan</h3>
         </div>
         @foreach($data_education as $key=>$value)
@@ -185,7 +192,12 @@
         </div>
         @foreach($data_project as $key=>$value)
             <div class="contain">
-                <div class="heading">{{ucwords($value->project_name)}} - <span class="heading-role">{{ucwords($value->role)}}</span></div>
+                <div class="heading">{{ucwords($value->project_name)}} 
+                    @if ($value->role == '-')
+                        <span></span></div>
+                    @else
+                        - <span class="heading-role">{{ucwords($value->role)}}</span></div>
+                    @endif
                 <div class="sub-head">
                     @php
                         $start = explode("-", $value->start_date);
