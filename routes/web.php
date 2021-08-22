@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CVController;
+use App\Models\Certificate;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,12 +24,13 @@ Route::get('/', function () {
 Route::get('/certificate', [CertificateController::class, 'index']);
 Route::get('/certificate/add-cert', [CertificateController::class, 'create']);
 Route::post('/certificate', [CertificateController::class, 'store']);
-Route::get('/certificate/pdf/{id}', [CertificateController::class, 'pdf']);
-Route::get('/certificate/pdf2/{id}', [CertificateController::class, 'pdf2']);
+Route::get('/certificate/pdf/{id}/{design_certificate_id}', [CertificateController::class, 'pdf']);
 
 // Certificate Template
 Route::get('/certificate/add-template', [CertificateController::class, 'create_template']);
 Route::post('/certificate/upload-template', [CertificateController::class, 'store_template']);
+Route::get('/certificate/view-template', [CertificateController::class, 'view_template']);
+Route::get('/certificate/template-certificate/{id}/delete', [CertificateController::class, 'destroy_template']);
 
 // cv
 Route::get('/cv', [CVController::class, 'index']);

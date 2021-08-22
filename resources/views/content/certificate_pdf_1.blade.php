@@ -66,7 +66,7 @@
     }
 </style>
 @foreach ($data as $d)
-<page id="full" backimg="{{ url('template/certificate.jpg') }}">
+<page id="full" backimg="{{ url('storage/templates/'.$d->design_certificate->filename) }}">
     <table id="nomor">
         <tr>
             <td id="kiri">

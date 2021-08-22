@@ -9,10 +9,6 @@
     <div class="mt-5">
         <form class="w-100 " method="POST" action="{{ url('/certificate') }}">
             @csrf
-            {{-- <div class="form-group">
-                <label for="nomor">No Certificate</label>
-                <input type="text" class="form-control" id="nomor" name="nomor" required>
-            </div> --}}
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nama">Nama Lengkap</label>
@@ -51,6 +47,14 @@
                     <label for="tanggal_selesai">Tanggal Selesai</label>
                     <input type="date" class="form-control" id="tanggal_selesai" name="tanggal_selesai" required>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="template_sertifikat">Design Sertifikat</label>
+                <select class="form-control" id="template_sertifikat" name="template_sertifikat" required>
+                    @foreach ($data_template as $value)
+                    <option value="{{$value->id}}">{{$value->template_name}}</option>
+                    @endforeach
+                </select>
             </div>
             <button type="submit" class="btn btn-primary mb-3" >Submit</button>
         </form>

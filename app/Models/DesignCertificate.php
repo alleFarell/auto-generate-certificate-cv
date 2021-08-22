@@ -9,4 +9,9 @@ class DesignCertificate extends Model
 {
     use HasFactory;
     protected $table = 'design_certificate';
+
+    public function certicates()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }

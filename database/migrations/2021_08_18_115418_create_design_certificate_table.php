@@ -15,6 +15,7 @@ class CreateDesignCertificateTable extends Migration
     {
         Schema::create('design_certificate', function (Blueprint $table) {
             $table->id();
+            $table->string("template_name");
             $table->string("filename");
             $table->string("filesize");
             $table->timestamps();

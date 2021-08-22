@@ -23,6 +23,7 @@ class CreateCertificatesTable extends Migration
             $table->string('pembicara');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
+            $table->foreignId('design_certificate_id');
             $table->timestamps();
         });
     }
