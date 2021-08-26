@@ -73,6 +73,8 @@ class CertificateController extends Controller
     }
 
     // Store design certificate template to database
+    # Setiap kali mengupload template sertifikat baru, harus menambahkan file view ke 'resources\views\content' UNTUK MASING-MASING TEMPLATE KARENA BERBEDA DESIGN.
+    # note: penamaan file view sertifikat harus sesuai format 'certificate_pdf_idTempalteSertifikat.blade.php'
     public function store_template(Request $request)
     {
         $request->validate([
@@ -144,7 +146,11 @@ class CertificateController extends Controller
 
         // html2pdf
         $html2pdf = new Html2Pdf('L','A4','en',false,'UTF-8', array(0,0,0,0));
-        $doc = view('content.certificate_pdf_'.$id_template_sertifikat, compact('data', 'tgl_indo'));
+
+        # mengarahkan view berdasarkan id template dengan format nama file 'certificate_pdf_idTempalteSertifikat.blade.php'
+        # Setiap kali mengupload template sertifikat baru, harus menambahkan file view ke 'resources\views\content' UNTUK MASING-MASING TEMPLATE KARENA BERBEDA DESIGN.
+        # note: penamaan file view sertifikat harus sesuai format 'certificate_pdf_idTempalteSertifikat.blade.php'
+        $doc = view('content.certificate_pdf_'.$id_template_sertifikat, compact('data', 'tgl_indo')); 
         $html2pdf->pdf->SetTitle('Certificate_'.$data[0]['nama']);
         $html2pdf->setTestIsImage(false);
         $html2pdf->writeHTML($doc, false);
