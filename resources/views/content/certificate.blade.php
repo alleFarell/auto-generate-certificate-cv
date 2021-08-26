@@ -66,7 +66,7 @@
                             @else
                                 <td>{{ $mulai }}</td>
                             @endif
-
+                            
                             @if (($value->status == "Hadir") && ($value->tanggal_selesai < now()))
                                 <td class="text-center">
                                     <a class="badge badge-success p-1">
