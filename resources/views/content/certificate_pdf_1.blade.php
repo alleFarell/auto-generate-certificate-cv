@@ -125,5 +125,6 @@
             </td>
         </tr>
     </table>
+    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(700)->backgroundColor(0, 0, 0, 0)->generate(Request::url())) !!} " style="width: 27mm; height: 27mm; margin-left:230px; margin-top: 10px;">
 </page>
 @endforeach

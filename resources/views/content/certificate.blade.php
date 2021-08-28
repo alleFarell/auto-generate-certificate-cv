@@ -104,6 +104,13 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <div class="visible-print text-center">
+                    {{-- {!! QrCode::size(200)->gradient(255, 40, 20, 100, 51, 51, 'diagonal')->generate(Request::url()); !!}
+                    color(255, 51, 51, 70) --}}
+                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->gradient(255, 40, 20, 70, 20, 30, 'diagonal')->generate(Request::url())) !!} ">
+                    <p>Scan me to return to the original page.</p>
+                    {{-- QrCode::format('png')->merge('http://www.google.com/someimage.png', .3, true)->generate(); --}}
+                </div>
             </table>
         </div>
     </div>

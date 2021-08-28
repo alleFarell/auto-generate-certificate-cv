@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Certificate;
 use App\Models\DesignCertificate;
 use Spipu\Html2Pdf\Html2Pdf;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CertificateController extends Controller
 {
