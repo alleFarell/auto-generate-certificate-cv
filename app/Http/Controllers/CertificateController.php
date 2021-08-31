@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Certificate;
 use App\Models\DesignCertificate;
+use Illuminate\Support\Facades\Storage;
 use Spipu\Html2Pdf\Html2Pdf;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Exception;
 
 class CertificateController extends Controller
 {
@@ -82,6 +83,7 @@ class CertificateController extends Controller
             'template-img' => 'required|mimes:jpg,jpeg,png'
         ]);
 
+        $no_template = $request->no_template;
         $template_name = $request->template_name;
         $filename = $request->file("template-img")->getClientOriginalName();
         $filesize = $request->file("template-img")->getSize();
@@ -89,6 +91,7 @@ class CertificateController extends Controller
         $request->file('template-img')->storeAs('public/templates', $filename); 
 
         $model = new DesignCertificate;
+        $model->no_template = $no_template;
         $model->template_name = $template_name;
         $model->filename = $filename;
         $model->filesize = $filesize;
@@ -111,9 +114,15 @@ class CertificateController extends Controller
      */
     public function destroy_template($id)
     {
-        $model = DesignCertificate::find($id);
-        $model->delete();
-        return redirect('/certificate/view-template');
+        try{
+            $model = DesignCertificate::find($id);
+            $filename = $model->filename;
+            Storage::disk('local')->delete('public/templates/'.$filename);
+            $model->delete();
+            return redirect('/certificate/view-template');
+        } catch (\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -122,7 +131,7 @@ class CertificateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function pdf($id, $id_template_sertifikat)
+    public function pdf($id, $no_template)
     {
         $bulan = array(
             1 =>   'Januari',
@@ -143,7 +152,6 @@ class CertificateController extends Controller
         $tgl = ($data[0]['tanggal_selesai']);
         $komponen = explode("-",$tgl);
         $tgl_indo = $komponen[2].' '.$bulan[(int) $komponen[1]].' '.$komponen[0];
-        
 
         // html2pdf
         $html2pdf = new Html2Pdf('L','A4','en',false,'UTF-8', array(0,0,0,0));
@@ -151,7 +159,7 @@ class CertificateController extends Controller
         # mengarahkan view berdasarkan id template dengan format nama file 'certificate_pdf_idTempalteSertifikat.blade.php'
         # Setiap kali mengupload template sertifikat baru, harus menambahkan file view ke 'resources\views\content' UNTUK MASING-MASING TEMPLATE KARENA BERBEDA DESIGN.
         # note: penamaan file view sertifikat harus sesuai format 'certificate_pdf_idTempalteSertifikat.blade.php'
-        $doc = view('content.certificate_pdf_'.$id_template_sertifikat, compact('data', 'tgl_indo')); 
+        $doc = view('content.certificate_pdf_'.$no_template, compact('data', 'tgl_indo')); 
         $html2pdf->pdf->SetTitle('Certificate_'.$data[0]['nama']);
         $html2pdf->setTestIsImage(false);
         $html2pdf->writeHTML($doc, false);

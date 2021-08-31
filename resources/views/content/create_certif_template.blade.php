@@ -20,8 +20,12 @@
         <form class="w-100 " method="POST" action="{{ url('/certificate/upload-template') }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
+                <label for="no_template">No. Template</label>
+                <input type="text" class="form-control" id="no_template" name="no_template" value="{{$num}}" required readonly>
+            </div>
+            <div class="form-group">
                 <label for="template_name">Nama Template</label>
-                <input type="text" class="form-control" id="template_name" name="template_name" value="{{'Template '.$num}}" required readonly>
+                <input type="text" class="form-control" id="template_name" name="template_name" placeholder="{{'Template '.$num}}" required >
             </div>
            <div class="form-group">
                <label for="file" class="form-label">File Template</label>

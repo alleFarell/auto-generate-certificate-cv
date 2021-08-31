@@ -11,6 +11,7 @@
             <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
                 <thead>
                     <tr>
+                        <th class="text-center">No. Template</th>
                         <th class="text-center">Nama Template</th>
                         <th class="text-center">Nama File</th>
                         <th class="text-center">Ukuran File</th>
@@ -20,6 +21,7 @@
                 <tbody>
                     @foreach ($data_template as $value)
                     <tr>
+                        <td><center>{{ucwords($value->no_template)}}</center></td>
                         <td><center>{{ucwords($value->template_name)}}</center></td>
                         <td><center>{{ucwords($value->filename)}}</center></td>
                         <td><center>{{ucwords($value->filesize)}}</center></td>

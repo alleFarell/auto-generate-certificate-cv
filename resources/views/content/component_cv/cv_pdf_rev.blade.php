@@ -104,7 +104,7 @@
     $arr_skills = explode('-', $str_skills)
 @endphp
 
-<page footer="page" backimg="{{ url('template/cv_rev.png') }}">
+<page footer="page" backimg="{{ url('template_cv/cv_rev.png') }}">
     <div class="header">
         <h1 class="nama">{{ucwords($data_biodata[0]->fullname)}}</h1>
         <p class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</p>

@@ -124,12 +124,16 @@
     $arr_skills = explode('-', $str_skills)
 @endphp
 
-<page footer="page" backimg="{{ url('template/cv_grid.png') }}">
+<page footer="page" backimg="{{ url('template_cv/cv_grid.png') }}">
     <div class="contain datadiri">
         <div class="header">
-            <div class="nama">Ghina Khoerunnisa</div>
-            <div class="dom_wa">Bengkulu, Indonesia | 085279630593</div>
-            <div class="email_linkedin">gkhoerunnisa@gmail.com | linkedin.com/in/ghina-khoerunnisa/</div>
+            <div class="nama">{{ucwords($data_biodata[0]->fullname)}}</div>
+            <div class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</div>
+            @if (($data_biodata[0]->linkedIn)=='-')
+                <div class="email_linkedin">{{$data_biodata[0]->email}}</div>
+            @else
+                <div class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn, 12)}}</div>
+            @endif
         </div>
     </div>
 

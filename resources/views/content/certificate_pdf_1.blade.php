@@ -64,9 +64,15 @@
         color: #12395C
 
     }
+    #qrcode {
+        width: 27mm; 
+        height: 27mm; 
+        margin-left:230px; 
+        margin-top: 10px;
+    }
 </style>
 @foreach ($data as $d)
-<page id="full" backimg="{{ url('storage/templates/'.$d->design_certificate->filename) }}">
+<page id="full" backimg="{{ asset('storage/templates/'.$d->design_certificate->filename) }}">
     <table id="nomor">
         <tr>
             <td id="kiri">
@@ -125,6 +131,6 @@
             </td>
         </tr>
     </table>
-    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(700)->backgroundColor(0, 0, 0, 0)->generate(Request::url())) !!} " style="width: 27mm; height: 27mm; margin-left:230px; margin-top: 10px;">
+    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(700)->backgroundColor(0, 0, 0, 0)->generate(Request::url())) !!} " id="qrcode">
 </page>
 @endforeach

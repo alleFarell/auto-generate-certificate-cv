@@ -56,6 +56,9 @@
                             $mulai = $hari[(int) $hari_mulai].', '.$komponen_mulai[2].' '.$bulan[(int) $komponen_mulai[1]].' '.$komponen_mulai[0];
                             $selesai = $hari[(int) $hari_selesai].', '.$komponen_selesai[2].' '.$bulan[(int) $komponen_selesai[1]].' '.$komponen_selesai[0];
 
+                            $old_nomor = $value->nomor;
+                            $nomor_sertifikat = str_replace("/", "-", $old_nomor);
+
                         @endphp
                         
                         <tr>
@@ -74,7 +77,7 @@
                                     </a>
                                 </td>
                                 <td class="text-center">
-                                    <a class="text-danger" href="{{ url('/certificate/pdf').'/'.$value->id.'/'.$value->design_certificate_id }}" target="_blank">
+                                    <a class="text-danger" href="{{ url('/certificate/pdf').'/'.$value->id.'/'.$value->design_certificate->no_template.'/'.$nomor_sertifikat }}" target="_blank">
                                         <i class="far fa-file-pdf fa-lg "></i>
                                     </a>
                                 </td>
@@ -104,13 +107,6 @@
                         </tr>
                     @endforeach
                 </tbody>
-                <div class="visible-print text-center">
-                    {{-- {!! QrCode::size(200)->gradient(255, 40, 20, 100, 51, 51, 'diagonal')->generate(Request::url()); !!}
-                    color(255, 51, 51, 70) --}}
-                    <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(150)->gradient(255, 40, 20, 70, 20, 30, 'diagonal')->generate(Request::url())) !!} ">
-                    <p>Scan me to return to the original page.</p>
-                    {{-- QrCode::format('png')->merge('http://www.google.com/someimage.png', .3, true)->generate(); --}}
-                </div>
             </table>
         </div>
     </div>

@@ -26,8 +26,9 @@
                     <option value="webinar">Webinar</option>
                     <option value="talkshow">Talkshow</option>
                     <option value="workshop">Workshop</option>
-                    {{-- <option>Competition</option> --}}
-                    {{-- <option>Bootcamp</option> --}}
+                    <option value="kompetisi">Kompetisi</option>
+                    <option value="bootcamp">Bootcamp</option>
+                    <option value="training">Training</option>
                 </select>
             </div>
             <div class="form-group">
