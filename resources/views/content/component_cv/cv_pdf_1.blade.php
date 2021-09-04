@@ -1,7 +1,7 @@
 <style>
     page {
         font-family:poppinslight;
-        color: #D1D0D0;
+        /* color: #ffffff; */
     }
 
     .header {
@@ -15,7 +15,7 @@
         padding: 0;
         font-size: 26pt;
         font-family:poppinssemibold;
-        color: #DCC696;
+        color: #11324D;
     }
 
     .dom_wa {
@@ -37,7 +37,7 @@
     }
     
     h3 {
-        color: #DCC696;
+        color: #11324D;
         padding: 0px;
         margin: 0px 0px 5px 0px;
         font-size: 14pt;
@@ -53,20 +53,18 @@
         font-weight: bold;
         font-size: 12pt;
         margin-bottom: 2px;
-        font-family:poppinsmedium;
     }
 
     .sub-head {
         font-weight: bold;
         font-size: 10.5pt;
         margin: 3px 0px 3px 0px;
-        /* color: #4e5456; */
-        color: #AAAAAA;
-        font-family:poppinsmedium;
+        color: #4e5456;
+        /* color: #D9D9D9; */
     }
 
     .heading-role {
-        color: #E9CE8B;
+        color: #004AAD;
         /* color: #E43397; */
     }
     .sub {
@@ -106,7 +104,7 @@
     $arr_skills = explode('-', $str_skills)
 @endphp
 
-<page footer="page" backimg="{{ url('template_cv/cv_dark.png') }}">
+<page footer="page" backimg="{{ url('template_cv/desain-cv-1.png') }}">
     <div class="header">
         <h1 class="nama">{{ucwords($data_biodata[0]->fullname)}}</h1>
         <p class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</p>
@@ -192,7 +190,7 @@
         </div>
         @foreach($data_project as $key=>$value)
             <div class="contain">
-                <div class="heading">{{ucwords($value->project_name)}} 
+                <div class="heading">{{ucwords($value->project_name)}}
                     @if ($value->role == '-')
                         <span></span></div>
                     @else

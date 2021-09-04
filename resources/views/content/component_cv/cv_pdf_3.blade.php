@@ -5,8 +5,6 @@
 
     .header {
         text-align: left;
-        margin-bottom: 10px;
-        margin-left: 20px;
     }
 
     .nama {
@@ -100,6 +98,31 @@
 
     .item {
         font-size: 10pt;
+    } 
+
+    #table {
+        width: 100%; 
+        /* padding-top: 140px;
+        padding-bottom: 60px; */
+    }
+
+    #kiri {
+        /* text-align: center; */
+        width:60%;
+    }
+
+    #kanan {
+        /* text-align: center; */
+        width:40%;
+    }
+
+    .image{
+        text-align: center;
+    }
+
+    img{
+        width: 70pt;
+        height: 70pt;
     }
 
 </style>
@@ -124,17 +147,26 @@
     $arr_skills = explode('-', $str_skills)
 @endphp
 
-<page footer="page" backimg="{{ url('template_cv/cv_grid.png') }}">
-    <div class="contain datadiri">
-        <div class="header">
-            <div class="nama">{{ucwords($data_biodata[0]->fullname)}}</div>
-            <div class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</div>
-            @if (($data_biodata[0]->linkedIn)=='-')
-                <div class="email_linkedin">{{$data_biodata[0]->email}}</div>
-            @else
-                <div class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn, 12)}}</div>
-            @endif
-        </div>
+<page footer="page" backimg="{{ url('template_cv/desain-cv-2.png') }}">
+    <div class="header datadiri">
+        <table id="table">
+            <tr>
+                <td id="kiri">
+                    <div class="nama">{{ucwords($data_biodata[0]->fullname)}}</div>
+                    <div class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</div>
+                    @if (($data_biodata[0]->linkedIn)=='-')
+                        <div class="email_linkedin">{{$data_biodata[0]->email}}</div>
+                    @else
+                        <div class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn, 12)}}</div>
+                    @endif
+                </td>
+                <td id="kanan">
+                    <div class="image">
+                        <img src="{{url('img/contoh_foto.png')}}"><br>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 
     <table class="tbl" CELLSPACING='0' cellpadding='5'>

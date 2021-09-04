@@ -1,87 +1,143 @@
 <style>
     page {
         font-family:poppinslight;
-        /* color: #ffffff; */
+        color: #D1D0D0;
     }
-
-    .header {
-        text-align: left;
-        margin-bottom: 10px;
-        margin-left: 20px;
+    .header{
+        background-color: #334257;
     }
 
     .nama {
-        margin: 0;
+        margin: 0px 0px 0px 0px ;
         padding: 0;
         font-size: 26pt;
         font-family:poppinssemibold;
-        color: #11324D;
+        text-align: center;
     }
 
     .dom_wa {
         margin: 7px 0px 0px 0px;
         padding: 0;
-        font-size: 12pt;
+        font-size: 11pt;
+        text-align: center;
     }
 
     .email_linkedin {
-        margin: 2px 0px 0px 0px;
+        margin: 2px 0px 30px 0px;
         padding: 0;
-        font-size: 12pt;
+        font-size: 11pt;
+        text-align: center;
     }
 
-    .batas {
-        border-bottom: 0.5px solid #444941;
-        padding: 0px;
-        margin: 10px 0px 10px 0px;
+    .pendidikan{
+        background-color: #476072;
+        padding-top: 10px;
+    }
+
+    .seminar{
+        background-color: #5D6E86;
+        padding-top: 10px;
     }
     
-    h3 {
-        color: #11324D;
-        padding: 0px;
-        margin: 0px 0px 5px 0px;
-        font-size: 14pt;
-        text-transform: uppercase;
-        font-family:poppinsmedium;
+    .proyek{
+        background-color: #334257;
+        padding-top: 10px;
     }
 
-    .contain {
-        margin: 0px 20px 3px 20px;
+    .organisasi{
+        background-color: #476072;
+        padding-top: 10px;
+    }
+
+    .pendidikans{
+        background-color: #476072;
+        padding-bottom: 10px;
+    }
+
+    .seminars{
+        background-color: #5D6E86;
+        padding-bottom: 10px;
+    }
+    
+    .proyeks{
+        background-color: #334257;
+        padding-bottom: 10px;
+    }
+
+    .organisasis{
+        background-color: #476072;
+        padding-bottom: 10px;
+    }
+    
+    .skill{
+        background-color: #7F88A2;
+        padding-top: 10px;  
+    }
+
+    .skills{
+        background-color: #7F88A2;
+        text-align: center; 
+        /* padding-bottom: 20px; */
+        padding: 0px 50px 20px 50px;  
+        padding-bottom: 10px;
+    }
+
+    .h3 {
+        padding: 0px;
+        margin: 0px 0px 10px 0px;
+        font-size: 15pt;
+        text-transform: uppercase;
+        font-family:poppinssemibold;
+        text-align: center;
     }
 
     .heading {
-        font-weight: bold;
+        font-family:poppinsmedium;
         font-size: 12pt;
-        margin-bottom: 2px;
+        margin: 3px 0px 3px 30px;
     }
 
     .sub-head {
-        font-weight: bold;
+        font-family:poppinsmedium;
         font-size: 10.5pt;
-        margin: 3px 0px 3px 0px;
-        color: #4e5456;
+        margin: 3px 0px 3px 30px;
+        color: #7F88A2;
         /* color: #D9D9D9; */
     }
 
-    .heading-role {
-        color: #004AAD;
-        /* color: #E43397; */
-    }
     .sub {
-        margin: 3px 0px 3px 0px;
+        margin: 3px 0px 3px 30px;
         text-align: justify;
         font-size: 11pt;
     }
+    
+    .sub-end{
+        margin: 3px 0px 0px 30px;
+        text-align: justify;
+        font-size: 11pt;
+        width: 540pt;
+    }
 
-    .italic {
-        font-style: italic;
+    .heading-role {
+        color: #5271FF;
+        /* color: #E43397; */
     }
 
     .item {
         font-size: 12pt;
         width: 100%;
+        margin: 0px 0px 0px 0px;
     }
 
+    .image{
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    img{
+        width: 70pt;
+        height: 70pt;
+    }
 </style>
 
 @php
@@ -104,29 +160,28 @@
     $arr_skills = explode('-', $str_skills)
 @endphp
 
-<page footer="page" backimg="{{ url('template_cv/cv_rev.png') }}">
+<page footer="page" backcolor="#334257">
     <div class="header">
-        <h1 class="nama">{{ucwords($data_biodata[0]->fullname)}}</h1>
-        <p class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</p>
+        <div class="image">
+            <img src="{{url('img/contoh_foto.png')}}"><br>
+        </div>
+        <div class="nama">{{ucwords($data_biodata[0]->fullname)}}</div>
+        <div class="dom_wa">{{ucwords($data_biodata[0]->city)}}, {{ucwords($data_biodata[0]->country)}} | {{$data_biodata[0]->phone}}</div>
         @if (($data_biodata[0]->linkedIn)=='-')
-            <p class="email_linkedin">{{$data_biodata[0]->email}}</p>
+            <div class="email_linkedin">{{$data_biodata[0]->email}}</div>
         @else
-            <p class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn,12)}}</p>   
+            <div class="email_linkedin">{{$data_biodata[0]->email}} | {{substr($data_biodata[0]->linkedIn,12)}}</div>   
         @endif
     </div>
-
-    <div class="contain">
-            <div class="batas"></div>
-        </div>
 
     @if(count($data_education) == 0)
         <span></span>
     @else
-        <div class="contain">
-            <h3>pendidikan</h3>
+        <div class="pendidikan">
+            <div class="h3">p e n d i d i k a n</div>
         </div>
         @foreach($data_education as $key=>$value)
-            <div class="contain">
+            <div class="pendidikans">
                 <div class="heading">{{ucwords($value->university)}} ({{ucwords($value->degree)}})</div>
                 <div class="sub-head">
                     @php
@@ -142,19 +197,19 @@
                     @endphp
                 </div>
                 <div class="sub">{{$value->major}}</div>
-                <div class="sub">IPK : {{$value->gpa}}/4.00</div>
+                <div class="sub-end">IPK : {{$value->gpa}}/4.00</div>
             </div>
         @endforeach
-    @endif       
+    @endif  
+    
     @if(count($data_seminar) == 0)
         <span></span>
     @else
-        <div class="contain">
-            <div class="batas"></div>
-            <h3>Seminar & Training</h3>
+        <div class="seminar">
+            <div class="h3">S e m i n a r & T r a i n i n g</div>
         </div>
         @foreach($data_seminar as $key=>$value)
-            <div class="contain">
+            <div class="seminars">
                 <div class="heading">{{ucwords($value->event_name)}}</div>
                 <div class="sub-head">
                     @php
@@ -176,7 +231,7 @@
                         }
                     @endphp
                 </div>
-                <div class="sub">{{ucwords($value->organizer)}}</div>
+                <div class="sub-end">{{ucwords($value->organizer)}}</div>
             </div>
         @endforeach
     @endif
@@ -184,12 +239,11 @@
     @if(count($data_project) == 0)
         <span></span>
     @else
-        <div class="contain">
-            <div class="batas "></div>
-            <h3 >Proyek</h3>
+        <div class="proyek">
+            <div class="h3">P r o y e k</div>
         </div>
         @foreach($data_project as $key=>$value)
-            <div class="contain">
+            <div class="proyeks">
                 <div class="heading">{{ucwords($value->project_name)}}
                     @if ($value->role == '-')
                         <span></span></div>
@@ -209,7 +263,7 @@
                         echo $start_date.' s/d '.$end_date;
                     @endphp
                 </div>
-                <div class="sub">{{ucfirst($value->description)}}</div>
+                <div class="sub-end">{{ucfirst($value->description)}}</div>
             </div>
         @endforeach
     @endif
@@ -217,12 +271,11 @@
     @if(count($data_organization) == 0)
         <span></span>
     @else
-        <div class="contain">
-            <div class="batas"></div>
-            <h3>Pengalaman Organisasi</h3>
+        <div class="organisasi">
+            <div class="h3">P e n g a l a m a n  O r g a n i s a s i</div>
         </div>
         @foreach($data_organization as $key=>$value)
-            <div class="contain">
+            <div class="organisasis">
                 <div class="heading">{{ucwords($value->organization_name)}}</div>
                 <div class="sub-head">
                     @php
@@ -237,7 +290,7 @@
                         echo $start_date.' s/d '.$end_date;
                     @endphp
                 </div>
-                <div class="sub">{{ucwords($value->role)}}</div>
+                <div class="sub-end">{{ucwords($value->role)}}</div>
             </div>
         @endforeach
     @endif
@@ -245,14 +298,17 @@
     @if(empty($data_biodata[0]->skills))
         <span></span>
     @else
-    <div class="contain">
-        <div class="batas"></div>
-        <h3>Skill</h3>
+    <div class="skill">
+        <div class="h3">S k i l l</div>
     </div>
-    @for ($i=0; $i < count($arr_skills); $i++)
-        <div class="contain">
-            <div class="item">- {{ ucwords($arr_skills[$i]) }}</div>
-        </div>
-    @endfor
+    <div class="skills">
+        @for ($i=0; $i < count($arr_skills); $i++)
+            @if ($i==count($arr_skills)-1)
+                <span class="item">{{ ucwords($arr_skills[$i]) }}</span> 
+            @else
+                <span class="item">{{ ucwords($arr_skills[$i]) }} | </span> 
+            @endif
+        @endfor
+    </div>
     @endif
 </page>
