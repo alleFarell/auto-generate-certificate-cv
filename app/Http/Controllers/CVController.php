@@ -320,31 +320,7 @@ class CVController extends Controller
         return redirect('/cv');
     }
 
-    public function pdf2()
-    {
-        $data_biodata = Biodata::all();
-        $data_education = Education::all()->sortBy('start_date');
-        $data_seminar = Seminar::all()->sortBy('start_date');
-        $data_project = Project::all()->sortBy('start_date');
-        $data_organization = Organization::all()->sortBy('start_date');
-
-        //html2pdf
-        $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,5,0,5));
-        $doc = view('content.component_cv.cv_pdf2', compact('data_biodata', 
-                                                            'data_education', 
-                                                            'data_seminar', 
-                                                            'data_project', 
-                                                            'data_organization')
-                );
-        $html2pdf->pdf->SetTitle('CV_'.$data_biodata[0]['fullname']);
-        $html2pdf->setTestIsImage(false);
-        $html2pdf->writeHTML($doc, false);
-        $html2pdf->Output("CV_".$data_biodata[0]['fullname'].".pdf",'I');
-
-        // return view('content.component_cv.cv_pdf2');
-    }
-
-    public function pdf_rev()
+    public function pdf_1()
     {
         $data_biodata = Biodata::all();
         $data_education = Education::all()->sortBy('start_date');
@@ -354,7 +330,7 @@ class CVController extends Controller
 
         //html2pdf
         $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,17,0,20));
-        $doc = view('content.component_cv.cv_pdf_rev', compact('data_biodata', 
+        $doc = view('content.component_cv.cv_pdf_1', compact('data_biodata', 
                                                             'data_education', 
                                                             'data_seminar', 
                                                             'data_project', 
@@ -367,7 +343,7 @@ class CVController extends Controller
         $html2pdf->Output("CV_".$data_biodata[0]['fullname'].".pdf",'I');
     }
 
-    public function pdf_dark()
+    public function pdf_2()
     {
         $data_biodata = Biodata::all();
         $data_education = Education::all()->sortBy('start_date');
@@ -376,8 +352,8 @@ class CVController extends Controller
         $data_organization = Organization::all()->sortBy('start_date');
 
         //html2pdf
-        $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,17,0,20));
-        $doc = view('content.component_cv.cv_pdf_dark', compact('data_biodata', 
+        $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,7,0,15));
+        $doc = view('content.component_cv.cv_pdf_2', compact('data_biodata', 
                                                             'data_education', 
                                                             'data_seminar', 
                                                             'data_project', 
@@ -390,7 +366,7 @@ class CVController extends Controller
         $html2pdf->Output("CV_".$data_biodata[0]['fullname'].".pdf",'I');
     }
 
-    public function pdf_grid()
+    public function pdf_3()
     {
         $data_biodata = Biodata::all();
         $data_education = Education::all()->sortBy('start_date');
@@ -400,7 +376,7 @@ class CVController extends Controller
 
         //html2pdf
         $html2pdf = new Html2Pdf('P','A4','en',false,'UTF-8', array(0,10,0,10));
-        $doc = view('content.component_cv.cv_pdf_grid', compact('data_biodata', 
+        $doc = view('content.component_cv.cv_pdf_3', compact('data_biodata', 
                                                             'data_education', 
                                                             'data_seminar', 
                                                             'data_project', 
