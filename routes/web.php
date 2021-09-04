@@ -42,10 +42,9 @@ Route::post('/cv/org', [CVController::class, 'store_organization']);
 Route::post('/cv/skill/{id}', [CVController::class, 'store_skill']);
 
 // cv pdf 
-Route::get('/cv/download_cv2', [CVController::class, 'pdf2']);
-Route::get('/cv/download_cv_rev', [CVController::class, 'pdf_rev']);
-Route::get('/cv/download_cv_dark', [CVController::class, 'pdf_dark']);
-Route::get('/cv/download_cv_grid', [CVController::class, 'pdf_grid']);
+Route::get('/cv/download_cv_1', [CVController::class, 'pdf_1']);
+Route::get('/cv/download_cv_2', [CVController::class, 'pdf_2']);
+Route::get('/cv/download_cv_3', [CVController::class, 'pdf_3']);
 
 // cv Update by Id
 Route::post('/cv/datadiri/{id}/edit', [CVController::class, 'update_biodata']);
