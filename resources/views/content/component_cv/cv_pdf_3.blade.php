@@ -90,6 +90,7 @@
         margin: 3px 0px 5px 0px;
         font-size: 10pt;
         line-height: 1.5;
+        text-align: justify;
     }
 
     .italic {
@@ -162,7 +163,7 @@
                 </td>
                 <td id="kanan">
                     <div class="image">
-                        <img src="{{url('img/contoh_foto.png')}}"><br>
+                        <img src="{{url('img/contoh_foto_1.png')}}"><br>
                     </div>
                 </td>
             </tr>

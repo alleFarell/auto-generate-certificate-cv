@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="template_name">Nama Template</label>
-                <input type="text" class="form-control" id="template_name" name="template_name" placeholder="{{'Template '.$num}}" required >
+                <input type="text" class="form-control" id="template_name" name="template_name" placeholder="Ex: Template Webinar Literacy Event" required >
             </div>
            <div class="form-group">
                <label for="file" class="form-label">File Template</label>

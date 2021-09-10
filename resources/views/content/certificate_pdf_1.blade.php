@@ -67,8 +67,8 @@
     #qrcode {
         width: 27mm; 
         height: 27mm; 
-        margin-left:230px; 
-        margin-top: 10px;
+        margin-left:200px; 
+        margin-top: 20px;
     }
 </style>
 @foreach ($data as $d)

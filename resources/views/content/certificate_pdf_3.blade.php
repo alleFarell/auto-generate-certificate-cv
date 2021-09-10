@@ -11,23 +11,22 @@
 
     #nomor {
         width: 100%; 
-        padding-top: 140px;
-        padding-bottom: 60px;
+        padding-top: 200px;
         font-family:times;
     }
 
     #nama{
         width: 100%; 
-        padding-top: 30px; 
+        padding-top: 70px; 
         font-size:30pt; 
         font-weight: bold;
         font-family:GillSansMT-Bold;
-        color: #343232;
+        color: #1a9a82;
     }
 
     #tipe_event{
         width: 100%; 
-        padding-top: 70px;
+        padding-top: 55px;
         font-family:GillSansMT-Bold;
         font-weight: bold;
     }
@@ -53,29 +52,24 @@
 
     #txt_tipe {
         font-size:23pt; 
-        color:#9e0b0f
+        color:#a19439
     }
 
     #txt_event_shrt {
         font-size:22pt; 
-        color: #343232
+        color: #1a9a82
     }
     #txt_event_long {
         font-size:18pt; 
-        color: #343232
+        color: #1a9a82
 
     }
-    #tempat_tanggal{
-        color: #a53235;
-    }
-
     #qrcode {
         width: 27mm; 
         height: 27mm; 
         margin-left:197px; 
-        margin-top: 39px;
+        margin-top: 33px;
     }
-
 </style>
 @foreach ($data as $d)
 <page id="full" backimg="{{ asset('storage/templates/'.$d->design_certificate->filename) }}">
@@ -116,10 +110,10 @@
             </td>
             <td id="tengah">
                 <span id="txt_tipe">{{strtoupper($d->tipe)}}</span><br><br>
-				@if (strlen($d->event) <= 55)
+                @if (strlen($d->event) <= 55)
 				    <span id="txt_event_shrt">{{ucwords($d->event)}}</span>
                 @else
-                <span id="txt_event_long">{{ucwords($d->event)}}</span>
+                    <span id="txt_event_long">{{ucwords($d->event)}}</span>
                 @endif
             </td>
             <td id="kanan">
@@ -131,7 +125,7 @@
             <td id="kiri">
             </td>
             <td id="tengah">
-                <span id="tempat_tanggal">Bandung, {{($tgl_indo)}}</span>
+                <span>Bandung, {{($tgl_indo)}}</span>
             </td>
             <td id="kanan">
             </td>
