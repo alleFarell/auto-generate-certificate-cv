@@ -54,5 +54,5 @@ Template Sertifikat : `public\template certificate for upload`
 > Note: Setiap kali mengupload template sertifikat baru, harus menambahkan file view ke `resources\views\content` UNTUK MASING-MASING TEMPLATE KARENA BERBEDA DESIGN. Penamaan file view sertifikat harus sesuai format `certificate_pdf_NomorTempalteSertifikat.blade.php`
 
 # References 
-[Original Repository of Html2Pdf](https://github.com/spipu/html2pdf)
+[Original Repository of Html2Pdf](https://github.com/spipu/html2pdf) <br>
 [Original Repository of Simple-QRCode](https://github.com/SimpleSoftwareIO/simple-qrcode)
