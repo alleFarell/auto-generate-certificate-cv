@@ -50,7 +50,7 @@ Copy and paste all fonts in `public\font` to `vendor\tecnickcom\tcpdf\fonts`
 
 Template CV : `public\template_CV` <br>
 Template Sertifikat : `public\template certificate for upload` <br>
-Resource Photoshop Template : 'public\resource editting'
+Resource Photoshop Template : `public\resource editting`
 
 > Note: Setiap kali mengupload template sertifikat baru, harus menambahkan file view ke `resources\views\content` UNTUK MASING-MASING TEMPLATE KARENA BERBEDA DESIGN. Penamaan file view sertifikat harus sesuai format `certificate_pdf_NomorTempalteSertifikat.blade.php`
 
