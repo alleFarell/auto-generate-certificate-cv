@@ -55,3 +55,4 @@ Template Sertifikat : `public\template certificate for upload`
 
 # References 
 [Original Repository of Html2Pdf](https://github.com/spipu/html2pdf)
+[Original Repository of Simple-QRCode](https://github.com/SimpleSoftwareIO/simple-qrcode)
